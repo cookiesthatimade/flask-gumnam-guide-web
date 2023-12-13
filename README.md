@@ -36,7 +36,7 @@ This project is built with :
 ```bash
   python3 main.py
 ```
-## 7 . Go to localhost:8000
+## 7 . Go to localhost:5000
 ---
 
 
