@@ -39,5 +39,11 @@ def info():
     return render_template('info.html', data=data)
 
 
+@app.route("/info.js", methods=["GET"])
+def page_chart():
+    resp = make_response(render_template("info.js"))
+    return resp
+
+
 if __name__ == '__main__':
     app.run(debug=True)
