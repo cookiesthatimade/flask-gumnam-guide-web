@@ -112,8 +112,8 @@ main .tm-hero {
 }
 
 main .tm-search-input {
-  width: 360px;
-  height: 60px;
+  width: 450px;
+  height: 80px;
   border-radius: 0;
   padding: 12px 15px;
   color: #060606 !important;
@@ -139,7 +139,7 @@ main .tm-search-btn {
   background-color: #E50914;
   border: none;
   width: 100px;
-  height: 60px;
+  height: 80px;
   margin-left: -1px;
 }
 
