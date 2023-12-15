@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 import pymysql
+
 
 app = Flask(__name__)
 
@@ -12,7 +13,14 @@ connection = pymysql.connect(host='43.203.1.73',
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    with connection.cursor() as cursor:
+        # 쿼리 실행
+        cursor.execute(
+            "SELECT * FROM `subway`.`sensing` WHERE `Date` LIKE '%%' ORDER BY `id` DESC LIMIT 300 OFFSET 0;")
+
+        sensing_data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
+    # HTML 템플릿에 데이터 전달
+    return render_template('index.html', sensing_data=sensing_data)
 
 
 @app.route('/cos')
@@ -37,12 +45,6 @@ def info():
         data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
     # HTML 템플릿에 데이터 전달
     return render_template('info.html', data=data)
-
-
-@app.route("/info.js", methods=["GET"])
-def page_chart():
-    resp = make_response(render_template("info.js"))
-    return resp
 
 
 if __name__ == '__main__':

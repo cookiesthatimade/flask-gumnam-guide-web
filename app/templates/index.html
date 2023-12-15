@@ -42,6 +42,7 @@
     </nav>
 
     <div class="container-fluid tm-mt-60">
+        <h5 style="color:white">{{ sensing_data[0]['Date'] }} 기준</h5>
         <div class="row tm-mb-74">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-md-6 mb-4">
@@ -55,7 +56,7 @@
                                 <div class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     온도
                                 </div>
-                                <div class="card-value h2 mb-0 font-weight-bold text-gray-800">몇 °C</div>
+                                <div class="card-value h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['temperature'] }} °C</div>
                             </div>
                         </div>
                     </div>
@@ -73,7 +74,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     습도
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">몇 %</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['humidity'] }} %</div>
                             </div>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     공기질
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">몇 ㎍/㎥</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['co2'] }} ppm</div>
                             </div>
                         </div>
                     </div>
@@ -109,7 +110,7 @@
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     조도
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">몇 lux</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['lux'] }} lux</div>
                             </div>
                         </div>
                     </div>
@@ -127,7 +128,7 @@
                                 <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                     유동인구
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">몇 명</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['foot'] }} 명</div>
                             </div>
                         </div>
                     </div>
@@ -145,7 +146,7 @@
                                 <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                     화재
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">0,1 건수</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['fire'] }} 건수</div>
                             </div>
                         </div>
                     </div>
@@ -293,6 +294,18 @@
 
         });
     </script>
+    <script>
+        // 페이지를 30초 간격으로 리로드하는 함수
+        function autoReloadPage() {
+            location.reload(); // 현재 페이지 리로드
+        }
+    
+        // 페이지 로드 후 30초 간격으로 autoReloadPage 함수 실행
+        window.onload = function() {
+            setInterval(autoReloadPage, 5 * 1000); // 30초 = 30 * 1000 밀리초
+        };
+    </script>
+
 </body>
 
 </html>
