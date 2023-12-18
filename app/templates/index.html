@@ -42,7 +42,7 @@
     </nav>
 
     <div class="container-fluid tm-mt-60">
-        <h5 style="color:white">{{ sensing_data[0]['Date'] }} 기준</h5>
+        <h5 style="color:white">{{ sensing_data['Date'] }} 기준</h5>
         <div class="row tm-mb-74">
             <!-- Earnings (Monthly) Card Example -->
             <div class="col-md-6 mb-4">
@@ -56,7 +56,7 @@
                                 <div class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1">
                                     온도
                                 </div>
-                                <div class="card-value h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['temperature'] }} °C</div>
+                                <div class="card-value h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['temperature'] }} °C</div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     습도
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['humidity'] }} %</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['humidity'] }} %</div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     공기질
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['co2'] }} ppm</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['co2'] }} ppm</div>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     조도
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['lux'] }} lux</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['lux'] }} lux</div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                                 <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                     유동인구
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['foot'] }} 명</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['foot'] }} 명</div>
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                                 <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
                                     화재
                                 </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data[0]['fire'] }} 건수</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['fire'] }} 건수</div>
                             </div>
                         </div>
                     </div>
@@ -252,18 +252,7 @@
     <!-- blog section end -->
 
     <!-- Javascript files-->
-
     <script src="static/js/bootstrap.bundle.min.js"></script>
-    <script src="static/js/jquery-3.0.0.min.js"></script>
-
-  
-
-
-    <script>
-        $(window).on("load", function () {
-            $('body').addClass('loaded');
-        });
-    </script>
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -293,8 +282,29 @@
             });
 
         });
+    // 데이터를 주기적으로 업데이트하는 함수
+    function updateData() {
+        // AJAX 요청을 통해 서버에 새로운 데이터 요청
+        $.ajax({
+            url: '/get_latest_data',  // 새로운 데이터를 가져오는 Flask 라우트
+            method: 'GET',
+            success: function(response) {
+                // 서버로부터 받은 데이터로 HTML 업데이트
+                $('#temperature').text(response.temperature); // 예시: 온도 업데이트
+                // 다른 데이터 요소들도 업데이트할 수 있도록 위와 같은 방식으로 처리
+                // ...
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    // 일정 시간마다 데이터 업데이트 함수 호출
+    setInterval(updateData, 30000); // 30초마다 호출
     </script>
-    <script>
+    
+    <!-- <script>
         // 페이지를 30초 간격으로 리로드하는 함수
         function autoReloadPage() {
             location.reload(); // 현재 페이지 리로드
@@ -304,7 +314,7 @@
         window.onload = function() {
             setInterval(autoReloadPage, 5 * 1000); // 30초 = 30 * 1000 밀리초
         };
-    </script>
+    </script> -->
 
 </body>
 
