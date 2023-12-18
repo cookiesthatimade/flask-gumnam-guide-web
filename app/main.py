@@ -1,8 +1,10 @@
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, jsonify
 import pymysql
+from flask_caching import Cache
 
 
 app = Flask(__name__)
+cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
 connection = pymysql.connect(host='43.203.1.73',
                              user='root',
@@ -11,14 +13,28 @@ connection = pymysql.connect(host='43.203.1.73',
                              cursorclass=pymysql.cursors.DictCursor)
 
 
-@app.route('/')
+@app.route('/get_latest_data', methods=['GET'])
+def get_latest_data():
+    with connection.cursor() as cursor:
+        # 쿼리 실행하여 가장 최신의 데이터 하나 가져오기
+        cursor.execute(
+            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 1;"
+        )
+        latest_data = cursor.fetchone()  # 최신 데이터 가져오기
+
+        # 최신 데이터를 JSON 형식으로 변환하여 클라이언트에 반환
+        return jsonify(latest_data)
+
+
+@app.route('/', methods=['GET'])
 def index():
     with connection.cursor() as cursor:
         # 쿼리 실행
         cursor.execute(
-            "SELECT * FROM `subway`.`sensing` WHERE `Date` LIKE '%%' ORDER BY `id` DESC LIMIT 300 OFFSET 0;")
+            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 300 OFFSET 0;")
 
-        sensing_data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
+        sensing_data = cursor.fetchone()  # 가져온 가장 최근 데이터를 변수에 저장
+
     # HTML 템플릿에 데이터 전달
     return render_template('index.html', sensing_data=sensing_data)
 
@@ -28,7 +44,7 @@ def cos():
     with connection.cursor() as cursor:
         # 쿼리 실행
         cursor.execute(
-            "SELECT * FROM `subway`.`subway` WHERE `업종` = '화장품(미용)' ORDER BY `위치` ASC LIMIT 300 OFFSET 0;")
+            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 300 OFFSET 0;")
 
         data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
     # HTML 템플릿에 데이터 전달
