@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, Response, request, render_template, jsonify
 import pymysql
-
+import time
+import json
 
 app = Flask(__name__)
 
@@ -11,51 +12,14 @@ connection = pymysql.connect(host='43.203.1.73',
                              cursorclass=pymysql.cursors.DictCursor)
 
 
-def get_latest_data():
-    with connection.cursor() as cursor:
-        # 쿼리 실행하여 가장 최신의 데이터 하나 가져오기
-        cursor.execute(
-            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 1;"
-        )
-        latest_data = cursor.fetchone()  # 최신 데이터 가져오기
-
-        # 최신 데이터를 Dictionary 형식으로 변환하여 클라이언트에 반환
-        if latest_data:
-            # 데이터베이스에서 가져온 컬럼명을 기준으로 Dictionary 생성
-            data_dict = {
-                'Date': latest_data['Date'],
-                'temperature': latest_data['temperature'],
-                'humidity': latest_data['humidity'],
-                'co2': latest_data['co2'],
-                'lux': latest_data['lux'],
-                'foot': latest_data['foot'],
-                'fire': latest_data['fire']
-            }
-            return data_dict
-        else:
-            return {}  # 데이터가 없을 때는 빈 Dictionary 반환
-
-
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    # 데이터베이스에서 최신 데이터 가져오기
-    # get_latest_data 함수는 데이터베이스에서 데이터를 가져오는 함수입니다.
-    latest_data = get_latest_data()
-
-    # HTML 템플릿에 데이터 전달
-    return render_template('index.html', sensing_data=latest_data)
+    return render_template('index.html')
 
 
-@app.route('/cos')
-def cos():
-    with connection.cursor() as cursor:
-        # 쿼리 실행
-        cursor.execute(
-            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 300 OFFSET 0;")
-
-        data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
-    # HTML 템플릿에 데이터 전달
-    return render_template('cos.html', data=data)
+@app.route('/escort')
+def escort():
+    return render_template('escort.html')
 
 
 @app.route('/info')
@@ -68,6 +32,37 @@ def info():
         data = cursor.fetchall()  # 가져온 데이터를 변수에 저장
     # HTML 템플릿에 데이터 전달
     return render_template('info.html', data=data)
+
+
+############################################################################################
+###### SSE#####
+############################################################################################
+
+@app.route('/sensing_data')
+def sensing_data():
+    def respond_to_client():
+
+        while True:
+            connection = pymysql.connect(host='43.203.1.73',
+                                         user='root',
+                                         password='#leeseun80',
+                                         db='subway',
+                                         cursorclass=pymysql.cursors.DictCursor)
+
+            with connection.cursor() as cursor:
+                # 쿼리 실행하여 가장 최신의 데이터 하나 가져오기
+                cursor.execute(
+                    "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 1;")
+                latest_data = cursor.fetchone()  # 최신 데이터 가져오기
+
+                # 데이터베이스에서 가져온 컬럼명을 기준으로 Dictionary 생성
+                _data = json.dumps({'Date': latest_data['Date'].strftime("%Y-%m-%d %H:%M:%S"), 'temperature': latest_data['temperature'], 'humidity': latest_data['humidity'],
+                                    'co2': latest_data['co2'], 'lux': latest_data['lux'], 'foot': latest_data['foot'], 'fire': latest_data['fire']})
+
+                yield f"id: 1\ndata: {_data}\nevent: online\n\n"
+                time.sleep(5)
+
+    return Response(respond_to_client(), mimetype='text/event-stream')
 
 
 if __name__ == '__main__':

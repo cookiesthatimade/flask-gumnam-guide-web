@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>금남지하도상가 : 상가정보</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="static/css/templatemo-style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="static/css/templatemo-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -16,274 +21,374 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="static/css/index.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <div class="left">
-            <div class="logo">
-                <a href="#"><img src="/static/img/logo.png" alt="" /></a>
-            </div>
+      <div class="left">
+        <div class="logo">
+          <a href="#"><img src="/static/img/logo.png" alt="" /></a>
         </div>
-        <div class="right">
-            <div class="mobile-menu">메뉴</div>
-            <ul class="menu-list">
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1 active" href="/">메인화면</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" href="/">출입구정보</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link nav-link-1" aria-current="page" href="/info">상가정보</a>
-                </li>
-            </ul>
-        </div>
+      </div>
+      <div class="right">
+        <div class="mobile-menu">메뉴</div>
+        <ul class="menu-list">
+          <li class="nav-item">
+            <a class="nav-link nav-link-1 active" href="/">메인화면</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-1" href="/">출입구정보</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-1" aria-current="page" href="/info"
+              >상가정보</a
+            >
+          </li>
+        </ul>
+      </div>
     </nav>
 
     <div class="container-fluid tm-mt-60">
-        <h5 style="color:white">{{ sensing_data['Date'] }} 기준</h5>
-        <div class="row tm-mb-74">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-80 py-5">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-temperature-high fa-4x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                    온도
-                                </div>
-                                <div class="card-value h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['temperature'] }} °C</div>
-                            </div>
-                        </div>
-                    </div>
+      <h5 id="Date_" style="color: white"></h5>
+      <div class="row tm-mb-74">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-danger shadow h-80 py-5">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i
+                    class="fas fa-temperature-high fa-4x text-gray-300 mr-5"
+                  ></i>
                 </div>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-5">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-tint fa-4x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    습도
-                                </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['humidity'] }} %</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1"
+                  >
+                    온도
+                  </div>
+                  <div
+                    id="temperature_"
+                    class="card-value h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
                 </div>
+              </div>
             </div>
-
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-5">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-cloud fa-4x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    공기질
-                                </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['co2'] }} ppm</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-5">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-lightbulb fa-4x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    조도
-                                </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['lux'] }} lux</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-success shadow h-70 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-user-friends fa-3x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                    유동인구
-                                </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['foot'] }} 명</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 mb-4">
-                <div class="card border-left-success shadow h-70 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center justify-content-center">
-                            <div class="col-auto">
-                                <i class="fas fa-fire-alt fa-3x text-gray-300 mr-5"></i>
-                            </div>
-                            <div class="col mr-2 col-6">
-                                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">
-                                    화재
-                                </div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ sensing_data['fire'] }} 건수</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+          </div>
         </div>
 
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-5">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i class="fas fa-tint fa-4x text-gray-300 mr-5"></i>
+                </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                  >
+                    습도
+                  </div>
+                  <div
+                    id="humidity_"
+                    class="h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-5">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i class="fas fa-cloud fa-4x text-gray-300 mr-5"></i>
+                </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    공기질
+                  </div>
+                  <div
+                    id="co2_"
+                    class="h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-5">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i class="fas fa-lightbulb fa-4x text-gray-300 mr-5"></i>
+                </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                  >
+                    조도
+                  </div>
+                  <div
+                    id="lux_"
+                    class="h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-success shadow h-70 py-2">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i class="fas fa-user-friends fa-3x text-gray-300 mr-5"></i>
+                </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
+                  >
+                    유동인구
+                  </div>
+                  <div
+                    id="foot_"
+                    class="h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card border-left-success shadow h-70 py-2">
+            <div class="card-body">
+              <div
+                class="row no-gutters align-items-center justify-content-center"
+              >
+                <div class="col-auto">
+                  <i class="fas fa-fire-alt fa-3x text-gray-300 mr-5"></i>
+                </div>
+                <div class="col mr-2 col-6">
+                  <div
+                    class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
+                  >
+                    화재
+                  </div>
+                  <div
+                    id="fire_"
+                    class="h2 mb-0 font-weight-bold text-gray-800"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
 
-
-    
-    <!-- blog section start -->
+    <!-- 상가 인근 관광지 section start -->
     <div class="blog_section layout_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="about_taital">상가 인근 관광지</h1>
-                    <div class="bulit_icon"><img src="static/img/bulit-icon.png"></div>
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="about_taital">상가 인근 관광지</h1>
+            <div class="bulit_icon">
+              <img src="static/img/bulit-icon.png" />
             </div>
-            <div class="blog_section_2">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 광주광역시청 제공 -->
-                            <div class="blog_img"><img src="static/img/index1.jpg"></div>
-                            <h4 class="prep_text">충장로</h4>
-                            <p class="lorem_text">금남로 서쪽으로 평행하게 놓여져 있으며 광주 구도심을 대표하는 번화가이기도 하다. 의병장 김덕령 장군의 시호인 충장공에서
-                                이름을 따 왔으며, 도매상 등의 상업이 중심이 되는 곳이다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 한국관광공사 제공 -->
-                            <div class="blog_img"><img src="static/img/index2.jpg"></div>
-                            <h4 class="prep_text">예술의 거리</h4>
-                            <p class="lorem_text">호남문화와 예술의 중심지인 예향 광주의 전통의 계승과 발전을 위해 조성된 예술의 거리는 도심 속에서 전통문화의 향기를 느낄 수
-                                명소이다. 갤러리와 화방, 골동품점 등이 모여 있다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 한국관광공사 제공 -->
-                            <div class="blog_img"><img src="static/img/index3.png"></div>
-                            <h4 class="prep_text">동명동</h4>
-                            <p class="lorem_text">광주의 중심가인 충장로에서 가장 가까운 주택가로 조선대학교와도 근접하여 젊은 기운이 느껴지는 곳이다. 동리단 카페거리와 더불어
-                                다양한 맛집이 생기고 있어 타지 관광객들에게도 인기이다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 한국관광공사 제공 -->
-                            <div class="blog_img"><img src="static/img/index10.jpg"></div>
-                            <h4 class="prep_text">양림 역사문화마을</h4>
-                            <p class="lorem_text">양림동은 광주 최초로 서양근대문물을 받아들인 통로이자 희생과 나눔의 공동체 역사를 가지고 있는 광주역사의 시작점이다. 다양한
-                                서양식 근대 건축물과 한옥이 어우러진 문화의 공간이기도 하다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 한국관광공사 제공 -->
-                            <div class="blog_img"><img src="static/img/index5.png"></div>
-                            <h4 class="prep_text">국립아시아문화전당</h4>
-                            <p class="lorem_text">아시아의 문화 예술과 혁신적인 아이디어와 신념이 만나 미래지향적인 결과물을 생산해내는 국제적 예술기관이다. 문화콘텐츠의 교류,
-                                제작, 전시, 공연, 유통이 이루어지는 복합문화시설이다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 한국관광공사 제공 -->
-                            <div class="blog_img"><img src="static/img/index6.png"></div>
-                            <h4 class="prep_text">5.18 민주광장</h4>
-                            <p class="lorem_text">광주 시민들이 목숨을 걸고 민주주의를 수호한 5.18광주민중항쟁의 직접적인 현장으로 당시 항쟁의 본부였던 전남도청 앞 분수대를
-                                연단으로 각종 집회를 열었으며 항쟁의지를 불태웠었다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 518민주화운동기록관 제공 -->
-                            <div class="blog_img"><img src="static/img/index9.jpg"></div>
-                            <h4 class="prep_text">518민주화운동기록관</h4>
-                            <p class="lorem_text">1980년 5월 역사적 현장이었던 옛 광주 가톨릭센터에 자리한 기록관이다. 유네스코 세계기록유산인 5.18 기록물의 보존 및
-                                전시를 통해 5.18의 역사적 가치와 정신을 세계인들과 공유하고 있다.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="blog_box">
-                            <!-- 지산유원지 제공 -->
-                            <div class="blog_img"><img src="static/img/index11.jpg"></div>
-                            <h4 class="prep_text">지산유원지</h4>
-                            <p class="lorem_text">무등산 향로봉 기슭에 위치한 유원지로 아름다운 자연경관을 보며 리프트카와 모노레일을 체험할 수 있다. 지산유원지 마지막 코스인
-                                팔각정 전망대에 오르면 광주 시내를 내려다 볼 수 있다.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="blog_section_2">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 광주광역시청 제공 -->
+                <div class="blog_img"><img src="static/img/index1.jpg" /></div>
+                <h4 class="prep_text">충장로</h4>
+                <p class="lorem_text">
+                  금남로 서쪽으로 평행하게 놓여져 있으며 광주 구도심을 대표하는
+                  번화가이기도 하다. 의병장 김덕령 장군의 시호인 충장공에서
+                  이름을 따 왔으며, 도매상 등의 상업이 중심이 되는 곳이다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 한국관광공사 제공 -->
+                <div class="blog_img"><img src="static/img/index2.jpg" /></div>
+                <h4 class="prep_text">예술의 거리</h4>
+                <p class="lorem_text">
+                  호남문화와 예술의 중심지인 예향 광주의 전통의 계승과 발전을
+                  위해 조성된 예술의 거리는 도심 속에서 전통문화의 향기를 느낄
+                  수 명소이다. 갤러리와 화방, 골동품점 등이 모여 있다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 한국관광공사 제공 -->
+                <div class="blog_img"><img src="static/img/index3.png" /></div>
+                <h4 class="prep_text">동명동</h4>
+                <p class="lorem_text">
+                  광주의 중심가인 충장로에서 가장 가까운 주택가로 조선대학교와도
+                  근접하여 젊은 기운이 느껴지는 곳이다. 동리단 카페거리와 더불어
+                  다양한 맛집이 생기고 있어 타지 관광객들에게도 인기이다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 한국관광공사 제공 -->
+                <div class="blog_img"><img src="static/img/index10.jpg" /></div>
+                <h4 class="prep_text">양림 역사문화마을</h4>
+                <p class="lorem_text">
+                  양림동은 광주 최초로 서양근대문물을 받아들인 통로이자 희생과
+                  나눔의 공동체 역사를 가지고 있는 광주역사의 시작점이다. 다양한
+                  서양식 근대 건축물과 한옥이 어우러진 문화의 공간이기도 하다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 한국관광공사 제공 -->
+                <div class="blog_img"><img src="static/img/index5.png" /></div>
+                <h4 class="prep_text">국립아시아문화전당</h4>
+                <p class="lorem_text">
+                  아시아의 문화 예술과 혁신적인 아이디어와 신념이 만나
+                  미래지향적인 결과물을 생산해내는 국제적 예술기관이다.
+                  문화콘텐츠의 교류, 제작, 전시, 공연, 유통이 이루어지는
+                  복합문화시설이다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 한국관광공사 제공 -->
+                <div class="blog_img"><img src="static/img/index6.png" /></div>
+                <h4 class="prep_text">5.18 민주광장</h4>
+                <p class="lorem_text">
+                  광주 시민들이 목숨을 걸고 민주주의를 수호한 5.18광주민중항쟁의
+                  직접적인 현장으로 당시 항쟁의 본부였던 전남도청 앞 분수대를
+                  연단으로 각종 집회를 열었으며 항쟁의지를 불태웠었다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 518민주화운동기록관 제공 -->
+                <div class="blog_img"><img src="static/img/index9.jpg" /></div>
+                <h4 class="prep_text">518민주화운동기록관</h4>
+                <p class="lorem_text">
+                  1980년 5월 역사적 현장이었던 옛 광주 가톨릭센터에 자리한
+                  기록관이다. 유네스코 세계기록유산인 5.18 기록물의 보존 및
+                  전시를 통해 5.18의 역사적 가치와 정신을 세계인들과 공유하고
+                  있다.
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="blog_box">
+                <!-- 지산유원지 제공 -->
+                <div class="blog_img"><img src="static/img/index11.jpg" /></div>
+                <h4 class="prep_text">지산유원지</h4>
+                <p class="lorem_text">
+                  무등산 향로봉 기슭에 위치한 유원지로 아름다운 자연경관을 보며
+                  리프트카와 모노레일을 체험할 수 있다. 지산유원지 마지막 코스인
+                  팔각정 전망대에 오르면 광주 시내를 내려다 볼 수 있다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- blog section end -->
-
+    <!-- 상가 인근 관광지 end -->
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Slick 라이브러리 CSS 및 JS CDN -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+
+    <!-- 상가 인근 관광지 슬라이더 -->
     <script>
-        $(document).ready(function () {
-            $('.blog_section_2 .row').slick({
-                
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                autoplay: true,
-                autoplaySpeed: 3000,
-                arrows: false, // arrows 옵션을 false로 설정하여 이전/다음 버튼 숨김
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }
-                ]
-            });
-
+      $(document).ready(function () {
+        $(".blog_section_2 .row").slick({
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          autoplay: true,
+          autoplaySpeed: 3000,
+          arrows: false, // arrows 옵션을 false로 설정하여 이전/다음 버튼 숨김
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
         });
-        
-</script>
+      });
+    </script>
 
+    <!-- SSE -->
+    <script>
+      var eventSource3 = new EventSource("/sensing_data");
+      eventSource3.addEventListener(
+        "message",
+        function (e) {
+          console.log(e.data);
+        },
+        false
+      );
 
-</body>
+      eventSource3.addEventListener("online", function (e) {
+        data = JSON.parse(e.data);
 
+        var Date = data.Date;
+        var temperature = data.temperature;
+        var humidity = data.humidity;
+        var co2 = data.co2;
+        var lux = data.lux;
+        var foot = data.foot;
+        var fire = data.fire;
+
+        document.getElementById("Date_").innerHTML = Date + " 기준";
+        document.getElementById("temperature_").innerHTML = temperature + " °C";
+        document.getElementById("humidity_").innerHTML = humidity + " %";
+        document.getElementById("co2_").innerHTML = co2 + " ppm";
+        document.getElementById("lux_").innerHTML = lux + " lux";
+        document.getElementById("foot_").innerHTML = foot + " 명";
+        document.getElementById("fire_").innerHTML = fire + " 건수";
+      });
+    </script>
+  </body>
 </html>
