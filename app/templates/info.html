@@ -2,23 +2,11 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>금남지하도상가 : 상가정보</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/info.css" />
   </head>
 
@@ -39,12 +27,7 @@
             <a class="nav-link nav-link-1" href="/">출입구정보</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link nav-link-1 active"
-              aria-current="page"
-              href="/info"
-              >상가정보</a
-            >
+            <a class="nav-link nav-link-1 active" aria-current="page" href="/info">상가정보</a>
           </li>
         </ul>
       </div>
@@ -52,33 +35,116 @@
     <main>
       <div class="tm-hero d-flex justify-content-center align-items-center">
         <div class="d-flex tm-search-form">
-          <input
-            id="searchInput"
-            class="form-control tm-search-input border-0"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            style="box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)"
-          />
-          <button
-            id="searchButton"
-            class="btn btn-outline-primary tm-search-btn"
-            type="button"
-          >
-            <i class="fas fa-search"></i>
-          </button>
+            <div class="search-container">
+                <input id="searchInput" class="form-control tm-search-input border-0" type="search" placeholder="Search" aria-label="Search" style="box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)" />
+                <button id="searchButton" class="btn btn-outline-primary tm-search-btn" type="button"><i class="fas fa-search"></i></button>
+            </div>
+            <button id="resetButton" class="btn btn-outline-primary reset-btn" type="button"><i class="fas fa-arrows-rotate"></i></button>
+            </div>
         </div>
-      </div>
+    </div>
+    
     </main>
     <section>
       <div class="content-list">
         <h1>의류(옷/속옷)1</h1>
-        <div class="slider"></div>
-        <div class="prev">
+        <div class="slider slider-1"></div>
+        <div class="prev prev-1">
           <i class="fa-solid fa-angle-right prev-arrow"></i>
         </div>
-        <div class="next"><i class="fa-solid fa-angle-right"></i></div>
+        <div class="next next-1">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
       </div>
+
+      <div class="content-list">
+        <h1>의류(옷/속옷)2</h1>
+        <div class="slider slider-2"></div>
+        <div class="prev prev-2">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-2">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>의류(옷/속옷)3</h1>
+        <div class="slider slider-3"></div>
+        <div class="prev prev-3">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-3">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>신발(잡화)</h1>
+        <div class="slider slider-4"></div>
+        <div class="prev prev-4">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-4">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>보석</h1>
+        <div class="slider slider-5"></div>
+        <div class="prev prev-5">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-5">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>화장품(미용)</h1>
+        <div class="slider slider-6"></div>
+        <div class="prev prev-6">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-6">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>수선</h1>
+        <div class="slider slider-7"></div>
+        <div class="prev prev-7">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-7">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>핸드폰</h1>
+        <div class="slider slider-8"></div>
+        <div class="prev prev-8">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-8">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
+      <div class="content-list">
+        <h1>기타</h1>
+        <div class="slider slider-9"></div>
+        <div class="prev prev-9">
+          <i class="fa-solid fa-angle-right prev-arrow"></i>
+        </div>
+        <div class="next next-9">
+          <i class="fa-solid fa-angle-right"></i>
+        </div>
+      </div>
+
     </section>
 
     <div class="modal" id="myModal">
@@ -87,16 +153,17 @@
         <div id="modalContent"></div>
       </div>
     </div>
+
     <script>
       const imageDescriptions = [
         {% for sub in data %}
-      {
-        name: "{{ sub['상가명'] }}",
+        {
+          name: "{{ sub['상가명'] }}",
           category: "{{ sub['업종'] }}",
-            location: "{{ sub['위치'] }}"
-      },
-      {% endfor %}
-          ];
+          location: "{{ sub['위치'] }}"
+        },
+        {% endfor %}
+      ];
     </script>
 
     <script src="static/js/info.js"></script>

@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +27,11 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-top: 0.3em;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
 }
 nav .left {
   display: flex;
@@ -75,29 +78,32 @@ nav .right .menu-list li a {
   font-size: 1.2rem;
 }
 
-.nav-item { margin-right: 30px; }
-.nav-item:last-child { margin-right: 30px; }
+.nav-item {
+  margin-right: 30px;
+}
+.nav-item:last-child {
+  margin-right: 30px;
+}
 
 .nav-link {
-    color: #ffffff;
-    border-bottom: 4px solid transparent;
-    font-size: 1.2rem;
-    padding-bottom: 4px;
+  color: #ffffff;
+  border-bottom: 4px solid transparent;
+  font-size: 1.2rem;
+  padding-bottom: 4px;
 }
 
 .nav-link-1.active,
 .nav-link-1:hover {
-    border-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .menu-list .nav-link {
-  font-size: 200px; 
+  font-size: 200px;
 }
 
 .menu-list .nav-link.active {
   font-weight: bold;
 }
-
 
 main {
   position: relative;
@@ -114,10 +120,11 @@ main .tm-hero {
 main .tm-search-input {
   width: 450px;
   height: 80px;
-  border-radius: 0;
+  border-radius: 5px;
   padding: 12px 15px;
   color: #060606 !important;
   border: none;
+  font-size: 1.1rem;
 }
 
 main .tm-search-input:focus {
@@ -125,22 +132,62 @@ main .tm-search-input:focus {
   box-shadow: 0 0 0 0.25rem rgb(0 153 153 / 0.25);
 }
 
-main .tm-search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+main .tm-search-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #060606 !important;
   opacity: 1; /* Firefox */
 }
 
-main .tm-search-input::-ms-input-placeholder { /* Microsoft Edge */
+main .tm-search-input::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: #060606 !important;
 }
 
 main .tm-search-btn {
   color: white;
-  background-color: #E50914;
+  background-color: #e50914;
   border: none;
   width: 100px;
   height: 80px;
   margin-left: -1px;
+}
+
+main .tm-search-form {
+  flex-direction: column;
+  align-items: center;
+}
+
+main .reset-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  cursor: pointer;
+  /* 추가적인 스타일을 적용하고 싶은 경우 아래에 추가하세요 */
+}
+
+main .search-container {
+  position: relative;
+  display: inline-block;
+}
+
+#searchButton {
+  position: absolute;
+  top: 50%;
+  right: 0px; /* 버튼을 검색창 우측에 위치시킵니다. 필요에 따라 조정할 수 있습니다. */
+  transform: translateY(-50%);
+  /* 추가적인 스타일을 적용하고 싶은 경우 아래에 추가하세요 */
+}
+
+#searchButton .fas {
+  font-size: 20px; /* 아이콘 크기 조정 */
+}
+
+#resetButton {
+  margin-left: 20px; /* 현재 위치에서 오른쪽으로 여백을 줍니다. */
+}
+#resetButton .fas {
+  font-size: 20px; /* 아이콘 크기 조정 */
 }
 
 section .content-list {
@@ -172,7 +219,7 @@ section .content-list .slider .item {
 }
 
 section .content-list .slider .item::before {
-  content: 'View More'; /* 표시할 텍스트를 여기에 입력합니다. */
+  content: "View More"; /* 표시할 텍스트를 여기에 입력합니다. */
   position: absolute; /* 절대 위치 설정 */
   top: 50%; /* 부모 요소의 상단에서 중앙으로 이동 */
   left: 50%; /* 부모 요소의 왼쪽에서 중앙으로 이동 */
@@ -189,7 +236,6 @@ section .content-list .slider .item:hover::before {
   opacity: 1; /* 이미지 호버 시 텍스트가 나타나도록 설정합니다. */
 }
 
-
 section .content-list .slider .item img {
   width: 100%;
   height: 100%;
@@ -201,7 +247,7 @@ section .content-list .slider .item img {
 section .content-list .slider .item img:hover {
   transform: scale(1.05); /* 마우스 호버 시 약간 확대 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* 이미지 주변에 약간의 그림자 효과를 추가합니다. */
-  opacity: 0.7; 
+  opacity: 0.7;
 }
 
 section .content-list .prev-arrow {
@@ -223,114 +269,6 @@ section .content-list .next {
   transform: translateY(-10px);
   cursor: pointer;
 }
-
-section .tm-video-item {
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
-}
-
-section .tm-video-item img {
-  position: relative;
-  display: block;
-  min-height: 100%;
-  max-width: 100%;
-  opacity: 0.8;
-}
-
-section .tm-video-item figcaption {
-  padding: 2em;
-  color: #fff;
-  text-transform: uppercase;
-  font-size: 1.25em;
-  -webkit-backface-visibility: hidden;
-backface-visibility: hidden;
-}
-
-section .tm-video-item figcaption::before,
-section .tm-video-item figcaption::after {
-  pointer-events: none;
-}
-
-section .tm-video-item figcaption,
-section .tm-video-item figcaption > a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-section .tm-video-item figcaption > a {
-z-index: 1000;
-text-indent: 200%;
-white-space: nowrap;
-font-size: 0;
-opacity: 0;
-}
-
-section .tm-video-item h2 {
-  word-spacing: -0.15em;
-  font-weight: 300;
-}
-
-section .tm-video-item h2,
-section .tm-video-item p {
-  margin: 0;
-}
-
-section .tm-video-item p {
-  letter-spacing: 1px;
-  font-size: 68.5%;
-}
-
-section .tm-gallery div.d-block { animation: show .5s ease; }
-
-figure.effect-ming {
-   background: #030c17;
-}
-
-figure.effect-ming img {
-   opacity: 0.9;
-   -webkit-transition: opacity 0.35s;
-   transition: opacity 0.35s;
-}
-
-figure.effect-ming figcaption::before {
-   position: absolute;
-   top: 30px;
-   right: 30px;
-   bottom: 30px;
-   left: 30px;
-   border: 2px solid #fff;
-   box-shadow: 0 0 0 30px rgba(255,255,255,0.2);
-   content: '';
-   opacity: 0;
-   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-   transition: opacity 0.35s, transform 0.35s;
-   -webkit-transform: scale3d(1.4,1.4,1);
-   transform: scale3d(1.4,1.4,1);
-}
-
-figure.effect-ming h2 {
-    font-size: 1.3em;
-   opacity: 0;
-   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-   transition: opacity 0.35s, transform 0.35s;
-   -webkit-transform: scale(1.5);
-   transform: scale(1.5);
-}
-
-figure.effect-ming:hover figcaption::before,
-figure.effect-ming:hover h2 {
-   opacity: 1;
-   -webkit-transform: scale3d(1,1,1);
-   transform: scale3d(1,1,1);
-}
-
-figure.effect-ming:hover figcaption { background-color: rgba(58,52,42,0); }
-figure.effect-ming:hover img { opacity: 0.4; }
 
 footer {
   width: 100%;
@@ -368,7 +306,11 @@ footer .wrap .options .option {
     justify-content: space-between;
     align-items: center;
     padding-top: 0.3em;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 10%,
+      rgba(0, 0, 0, 0)
+    );
   }
   nav .left {
     display: flex;
@@ -429,21 +371,25 @@ footer .wrap .options .option {
 }
 
 @media (max-width: 575px) {
-  main .tm-container-content { max-width: 420px; }
+  main .tm-container-content {
+    max-width: 420px;
+  }
 
   main .tm-search-form {
-      padding-left: 15px;
-      padding-right: 15px;
-      width: 100%;
-      justify-content: center;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    justify-content: center;
   }
 
   main .tm-search-input {
-      width: 100%;
-      max-width: 360px;
+    width: 100%;
+    max-width: 360px;
   }
 
-  main .tm-people-row { max-width: 420px; }
+  main .tm-people-row {
+    max-width: 420px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -479,12 +425,24 @@ footer .wrap .options .option {
   padding: 20px;
   border-radius: 5px;
   text-align: center;
-  margin-bottom: 1000px; /* 조절 가능한 여백 값 */
+  max-width: 600px; /* 모달 최대 너비 조절 */
+  width: 100%; /* 최대 너비에 맞게 조절 */
+}
+
+.modal-content img {
+  width: 100%; /* 이미지 폭을 100%로 지정하여 부모 요소에 맞춤 */
+  height: auto; /* 이미지 높이 자동 조절 */
+  max-width: 100%; /* 이미지가 자식 요소보다 클 경우 100%로 제한 */
+  max-height: 100%; /* 이미지가 자식 요소보다 클 경우 100%로 제한 */
+  object-fit: contain; /* 이미지 비율을 유지하면서 자식 요소에 맞춤 */
 }
 
 .modal-body img {
   max-width: 100%;
   height: auto;
+  max-height: 80vh; /* 이미지의 최대 높이를 화면 높이의 80%로 제한 */
+  margin: 0 auto; /* 이미지 중앙 정렬을 위해 추가 */
+  display: block; /* 인라인 요소 간의 공백을 없애기 위해 추가 */
 }
 
 .close {
@@ -494,5 +452,3 @@ footer .wrap .options .option {
   font-weight: bold;
   cursor: pointer;
 }
-
-/*# sourceMappingURL=index.css.map */

@@ -1,10 +1,8 @@
 from flask import Flask, request, render_template, jsonify
 import pymysql
-from flask_caching import Cache
 
 
 app = Flask(__name__)
-cache = Cache(app, config={'CACHE_TYPE': 'null'})
 
 connection = pymysql.connect(host='43.203.1.73',
                              user='root',
@@ -13,7 +11,6 @@ connection = pymysql.connect(host='43.203.1.73',
                              cursorclass=pymysql.cursors.DictCursor)
 
 
-@app.route('/get_latest_data', methods=['GET'])
 def get_latest_data():
     with connection.cursor() as cursor:
         # 쿼리 실행하여 가장 최신의 데이터 하나 가져오기
@@ -22,21 +19,31 @@ def get_latest_data():
         )
         latest_data = cursor.fetchone()  # 최신 데이터 가져오기
 
-        # 최신 데이터를 JSON 형식으로 변환하여 클라이언트에 반환
-        return jsonify(latest_data)
+        # 최신 데이터를 Dictionary 형식으로 변환하여 클라이언트에 반환
+        if latest_data:
+            # 데이터베이스에서 가져온 컬럼명을 기준으로 Dictionary 생성
+            data_dict = {
+                'Date': latest_data['Date'],
+                'temperature': latest_data['temperature'],
+                'humidity': latest_data['humidity'],
+                'co2': latest_data['co2'],
+                'lux': latest_data['lux'],
+                'foot': latest_data['foot'],
+                'fire': latest_data['fire']
+            }
+            return data_dict
+        else:
+            return {}  # 데이터가 없을 때는 빈 Dictionary 반환
 
 
 @app.route('/', methods=['GET'])
 def index():
-    with connection.cursor() as cursor:
-        # 쿼리 실행
-        cursor.execute(
-            "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 300 OFFSET 0;")
-
-        sensing_data = cursor.fetchone()  # 가져온 가장 최근 데이터를 변수에 저장
+    # 데이터베이스에서 최신 데이터 가져오기
+    # get_latest_data 함수는 데이터베이스에서 데이터를 가져오는 함수입니다.
+    latest_data = get_latest_data()
 
     # HTML 템플릿에 데이터 전달
-    return render_template('index.html', sensing_data=sensing_data)
+    return render_template('index.html', sensing_data=latest_data)
 
 
 @app.route('/cos')
