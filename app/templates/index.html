@@ -251,8 +251,6 @@
     </div>
     <!-- blog section end -->
 
-    <!-- Javascript files-->
-    <script src="static/js/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -282,39 +280,9 @@
             });
 
         });
-    // 데이터를 주기적으로 업데이트하는 함수
-    function updateData() {
-        // AJAX 요청을 통해 서버에 새로운 데이터 요청
-        $.ajax({
-            url: '/get_latest_data',  // 새로운 데이터를 가져오는 Flask 라우트
-            method: 'GET',
-            success: function(response) {
-                // 서버로부터 받은 데이터로 HTML 업데이트
-                $('#temperature').text(response.temperature); // 예시: 온도 업데이트
-                // 다른 데이터 요소들도 업데이트할 수 있도록 위와 같은 방식으로 처리
-                // ...
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    }
+        
+</script>
 
-    // 일정 시간마다 데이터 업데이트 함수 호출
-    setInterval(updateData, 30000); // 30초마다 호출
-    </script>
-    
-    <!-- <script>
-        // 페이지를 30초 간격으로 리로드하는 함수
-        function autoReloadPage() {
-            location.reload(); // 현재 페이지 리로드
-        }
-    
-        // 페이지 로드 후 30초 간격으로 autoReloadPage 함수 실행
-        window.onload = function() {
-            setInterval(autoReloadPage, 5 * 1000); // 30초 = 30 * 1000 밀리초
-        };
-    </script> -->
 
 </body>
 
