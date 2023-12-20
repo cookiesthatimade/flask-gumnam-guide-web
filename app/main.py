@@ -60,7 +60,7 @@ def sensing_data():
                                     'co2': latest_data['co2'], 'lux': latest_data['lux'], 'foot': latest_data['foot'], 'fire': latest_data['fire']})
 
                 yield f"id: 1\ndata: {_data}\nevent: online\n\n"
-                time.sleep(5)
+                time.sleep(3000) # 5초로 설정
 
     return Response(respond_to_client(), mimetype='text/event-stream')
 

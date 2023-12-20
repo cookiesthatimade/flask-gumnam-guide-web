@@ -14,19 +14,11 @@ a {
   text-decoration: none;
 }
 
-button {
-  border: none;
-  padding: 0.9em 2em;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 0.3em;
+  padding-top: 2em;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.7) 10%,
