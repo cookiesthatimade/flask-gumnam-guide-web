@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>금남지하도상가 : 상가정보</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/css/escort.css" />
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=jalpomf5ta"></script>
+
+</head>
+
+<body>
+    <nav>
+        <div class="left">
+            <div class="logo">
+                <a href="#"><img src="/static/img/logo.png" alt="" /></a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="mobile-menu">메뉴</div>
+            <ul class="menu-list">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="/">메인화면</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="/escort">출입구정보</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" aria-current="page" href="/info">상가정보</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title_st">출입구 위치도 <span>(옆으로 넘겨 출입구 위치를 확인하세요)</span></h1>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="/static/img/area2.png" alt="" />
+        </div>
+
+        <div id="map" style="width: 100%; height: 500px;"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="title_st">출입구 안내 버튼 <span>(버튼을 클릭하면 해당 출입구로 로봇이 안내해드립니다)</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="radio-container" id="radioContainer"></div>
+
+        <button id="startButton" onclick="startGuide()">안내시작</button>
+    </main>
+
+    <script src="static/js/escort.js"></script>
+</body>
+
+</html>
