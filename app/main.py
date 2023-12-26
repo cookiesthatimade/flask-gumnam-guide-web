@@ -2,6 +2,8 @@ from flask import Flask, Response, request, render_template, jsonify
 import pymysql
 import time
 import json
+from pytz import timezone
+import pytz
 
 app = Flask(__name__)
 
@@ -42,6 +44,9 @@ def info():
 def sensing_data():
     def respond_to_client():
 
+        korea_tz = timezone('Asia/Seoul')  # 대한민국 시간대
+        utc_tz = pytz.utc  # UTC 시간대
+
         while True:
             connection = pymysql.connect(host='43.203.1.73',
                                          user='root',
@@ -55,12 +60,16 @@ def sensing_data():
                     "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 1;")
                 latest_data = cursor.fetchone()  # 최신 데이터 가져오기
 
+                # UTC로부터 대한민국 시간대로 변환
+                korea_time = latest_data['Date'].replace(
+                    tzinfo=utc_tz).astimezone(korea_tz)
+
                 # 데이터베이스에서 가져온 컬럼명을 기준으로 Dictionary 생성
-                _data = json.dumps({'Date': latest_data['Date'].strftime("%Y-%m-%d %H:%M:%S"), 'temperature': latest_data['temperature'], 'humidity': latest_data['humidity'],
+                _data = json.dumps({'Date': korea_time.strftime("%Y-%m-%d %H:%M:%S"), 'temperature': latest_data['temperature'], 'humidity': latest_data['humidity'],
                                     'co2': latest_data['co2'], 'lux': latest_data['lux'], 'foot': latest_data['foot'], 'fire': latest_data['fire']})
 
                 yield f"id: 1\ndata: {_data}\nevent: online\n\n"
-                time.sleep(3000) # 5초로 설정
+                time.sleep(3000)  # 5초로 설정
 
     return Response(respond_to_client(), mimetype='text/event-stream')
 

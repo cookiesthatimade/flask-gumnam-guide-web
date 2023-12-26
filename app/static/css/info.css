@@ -211,7 +211,7 @@ section .content-list .slider .item {
 }
 
 section .content-list .slider .item::before {
-  content: "View More"; /* 표시할 텍스트를 여기에 입력합니다. */
+  content: var(--content); /* 변경된 content 값을 반영합니다. */
   position: absolute; /* 절대 위치 설정 */
   top: 50%; /* 부모 요소의 상단에서 중앙으로 이동 */
   left: 50%; /* 부모 요소의 왼쪽에서 중앙으로 이동 */
@@ -220,7 +220,7 @@ section .content-list .slider .item::before {
   transition: opacity 0.3s ease; /* 변화에 부드러운 애니메이션을 추가합니다. */
   text-align: center; /* 텍스트를 가운데 정렬합니다. */
   color: white; /* 텍스트 색상 설정 */
-  font-size: 25px; /* 텍스트 크기 설정 */
+  font-size: 30px; /* 텍스트 크기 설정 */
   z-index: 1; /* 이미지 위에 텍스트가 표시되도록 z-index 설정 */
 }
 

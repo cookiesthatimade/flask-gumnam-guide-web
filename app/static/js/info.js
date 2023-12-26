@@ -163,3 +163,19 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  const sliders = document.querySelectorAll(".content-list .slider"); // 각 슬라이더 아이템들을 선택합니다.
+
+  sliders.forEach((slider, index) => {
+    const items = slider.querySelectorAll(".item"); // 각 슬라이더 아이템들을 선택합니다.
+
+    items.forEach((item, itemIndex) => {
+      item.addEventListener("mouseover", function () {
+        const itemContent =
+          imageDescriptions[index * items.length + itemIndex].name; // 해당 아이템에 대한 상가명을 가져옵니다.
+        item.style.setProperty("--content", `"${itemContent}"`); // content 속성을 변경합니다.
+      });
+    });
+  });
+});
