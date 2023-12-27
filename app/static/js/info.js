@@ -104,9 +104,10 @@ document.addEventListener("DOMContentLoaded", function () {
       performSearch();
     }
   });
+  // 초기화 버튼 클릭 시 페이지 새로고침
   resetButton.addEventListener("click", function () {
     searchInput.value = ""; // 검색어 초기화
-    performSearch(); // 모든 정보 보이기
+    location.reload(); // 페이지 새로고침
   });
 });
 
