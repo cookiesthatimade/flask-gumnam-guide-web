@@ -168,13 +168,22 @@ window.onclick = function (event) {
 document.addEventListener("DOMContentLoaded", function () {
   const sliders = document.querySelectorAll(".content-list .slider"); // 각 슬라이더 아이템들을 선택합니다.
 
-  sliders.forEach((slider, index) => {
+  sliders.forEach((slider, sliderIndex) => {
     const items = slider.querySelectorAll(".item"); // 각 슬라이더 아이템들을 선택합니다.
 
     items.forEach((item, itemIndex) => {
       item.addEventListener("mouseover", function () {
-        const itemContent =
-          imageDescriptions[index * items.length + itemIndex].name; // 해당 아이템에 대한 상가명을 가져옵니다.
+        let dataIndex = 0;
+
+        // 해당 아이템의 슬라이더 이전 인덱스들에 대한 이미지 개수의 합을 계산하여 데이터 인덱스를 계산합니다.
+        for (let i = 0; i < sliderIndex; i++) {
+          dataIndex += imagesPerPart[i];
+        }
+
+        // 현재 아이템의 인덱스에 해당하는 데이터 인덱스를 계산합니다.
+        dataIndex += itemIndex;
+
+        const itemContent = imageDescriptions[dataIndex].name; // 해당 아이템에 대한 상가명을 가져옵니다.
         item.style.setProperty("--content", `"${itemContent}"`); // content 속성을 변경합니다.
       });
     });

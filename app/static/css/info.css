@@ -196,6 +196,7 @@ section .content-list .slider {
   display: flex;
   gap: 0.5rem;
   overflow-x: scroll;
+  overflow-y: hidden; /* 세로 스크롤 숨기기 */
   scroll-behavior: smooth;
 }
 section .content-list .slider::-webkit-scrollbar {
