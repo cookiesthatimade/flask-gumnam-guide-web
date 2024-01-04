@@ -445,3 +445,23 @@ footer .wrap .options .option {
   font-weight: bold;
   cursor: pointer;
 }
+
+::-webkit-scrollbar {
+  width: 12px; /* 스크롤바의 너비 */
+}
+
+/* Track(스크롤바의 배경) 스타일링 */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* 배경색 */
+}
+
+/* Thumb(스크롤바의 드래그 부분) 스타일링 */
+::-webkit-scrollbar-thumb {
+  background-color: #f51212; /* 스크롤바 색상 */
+  border-radius: 6px; /* 스크롤바의 둥근 테두리 */
+}
+
+/* 스크롤바 호버 효과 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #f51212;
+}

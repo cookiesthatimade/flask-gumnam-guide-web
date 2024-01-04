@@ -1,4 +1,4 @@
-const imagesPerPart = [8, 8, 8, 8, 8, 8, 8, 7, 7];
+const imagesPerPart = [44, 43, 43, 27, 13, 7, 5, 3, 7];
 
 const numParts = imagesPerPart.length;
 

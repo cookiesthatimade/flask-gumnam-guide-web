@@ -73,6 +73,5 @@ def sensing_data():
 
     return Response(respond_to_client(), mimetype='text/event-stream')
 
-
 if __name__ == '__main__':
     app.run(debug=True)
