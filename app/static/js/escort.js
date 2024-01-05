@@ -1,55 +1,58 @@
-var radioContainer = document.getElementById("radioContainer");
+var imgContainer = document.getElementById("imgContainer");
 
-// Create radio buttons from 1 to 6
-for (var i = 1; i <= 6; i++) {
-  var radio = createRadioButton(i);
-  radioContainer.appendChild(radio);
+// 이미지에 대한 텍스트 배열
+var buttonTexts = [
+  '금남공원',
+  'SC제일은행',
+  '우리은행',
+  '한화투자증권',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  'none',
+  '전일빌딩',
+  'NH투자증권',
+  '5.18 민주화운동 기록관',
+  '농협중앙회'
+];
+
+// 1부터 4까지의 이미지 버튼 생성
+for (var i = 1; i <= 4; i++) {
+  var imageButton = createImageButton(i);
+  imgContainer.appendChild(imageButton);
 }
 
-// Create radio buttons from 17 to 22
-for (var j = 17; j <= 22; j++) {
-  var radio = createRadioButton(j);
-  radioContainer.appendChild(radio);
+// 19부터 22까지의 이미지 버튼 생성
+for (var j = 19; j <= 22; j++) {
+  var imageButton = createImageButton(j);
+  imgContainer.appendChild(imageButton);
 }
 
-function createRadioButton(value) {
-  var radio = document.createElement("input");
-  radio.type = "radio";
-  radio.id = "radio" + value;
-  radio.name = "number";
-  radio.value = value;
+function createImageButton(value) {
+  var imgButton = document.createElement("div");
+  imgButton.className = "image-button";
+  imgButton.style.backgroundImage = "url('/static/img/" + value + ".jpg')";
+  imgButton.style.backgroundSize = "cover";
+  imgButton.onclick = function() {
+    alert(value + '번 출입구로 안내를 시작합니다.');
+    // 안내 시작에 대한 로직을 추가
+  };
 
-  var label = document.createElement("label");
-  label.htmlFor = "radio" + value;
-  label.innerText = value;
+  // 텍스트 오버레이 추가
+  var textOverlay = document.createElement("div");
+  textOverlay.className = "text-overlay";
+  textOverlay.innerText = buttonTexts[value - 1];
+  imgButton.appendChild(textOverlay);
 
-  var wrapper = document.createElement("div");
-  wrapper.appendChild(radio);
-  wrapper.appendChild(label);
-
-  return wrapper;
+  return imgButton;
 }
-
-function startGuide() {
-  var selectedNumber = document.querySelector('input[name="number"]:checked');
-  if (selectedNumber) {
-    alert(selectedNumber.value + "번 출입구로 안내를 시작합니다.");
-    // 여기에 안내 시작에 대한 로직 추가
-  } else {
-    alert("라디오 버튼을 선택하세요.");
-  }
-}
-
-// Rest of your map-related code remains unchanged
-var mapOptions = {
-  center: new naver.maps.LatLng(35.1476504, 126.9189039), // 출입구 위치 좌표로 변경
-  zoom: 17, // 지도 확대 레벨 조정
-};
-
-var map = new naver.maps.Map("map", mapOptions);
-
-// 출입구 위치에 마커 추가
-var marker = new naver.maps.Marker({
-  position: new naver.maps.LatLng(35.1476504, 126.9189039), // 출입구 위치 좌표로 변경
-  map: map,
-});
