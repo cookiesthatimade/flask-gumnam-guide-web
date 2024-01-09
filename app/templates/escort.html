@@ -2,13 +2,28 @@
 <html lang="kr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>금남지하도상가 : 상가정보</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="static/css/escort.css" />
-    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6zu4kqrt1l"></script>
+    <script
+      type="text/javascript"
+      src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6zu4kqrt1l"
+    ></script>
   </head>
 
   <body>
@@ -25,10 +40,17 @@
             <a class="nav-link nav-link-1" href="/">실내환경정보</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-1 active" aria-current="page" href="/escort">출입구정보</a>
+            <a
+              class="nav-link nav-link-1 active"
+              aria-current="page"
+              href="/escort"
+              >출입구정보</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-link-1" aria-current="page" href="/info">상가정보</a>
+            <a class="nav-link nav-link-1" aria-current="page" href="/info"
+              >상가정보</a
+            >
           </li>
         </ul>
       </div>
@@ -43,18 +65,111 @@
       </div>
       <div class="image-container">
         <img src="/static/img/area.png" alt="" />
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 368px;
+            right: 18px;
+            width: 130px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 368px;
+            right: 373px;
+            width: 150px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 368px;
+            left: 390px;
+            width: 130px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 368px;
+            left: 160px;
+            width: 130px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 659px;
+            left: 16px;
+            width: 130px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 659px;
+            left: 373px;
+            width: 150px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 659px;
+            right: 264px;
+            width: 258px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
+        <div
+          class="area-color"
+          style="
+            position: absolute;
+            top: 659px;
+            right: 3px;
+            width: 233px;
+            height: 50px;
+            border: 8px solid red;
+          "
+        ></div>
       </div>
 
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <h1 class="title_st">출입구 안내 버튼 <span>(이미지를 클릭하면 해당 출입구로 로봇이 안내해드립니다)</span></h1>
+            <h1 class="title_st">
+              출입구 안내 버튼
+              <span
+                >(이미지를 클릭하면 해당 출입구로 로봇이 안내해드립니다)</span
+              >
+            </h1>
           </div>
         </div>
       </div>
 
       <div id="imgContainer"></div>
-      
     </main>
 
     <script src="static/js/escort.js"></script>
