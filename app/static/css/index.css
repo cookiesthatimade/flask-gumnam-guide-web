@@ -79,11 +79,9 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-top: 2em;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 10%,
-    rgba(0, 0, 0, 0)
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.7) 10%,
+      rgba(0, 0, 0, 0));
 }
 
 nav .left {
@@ -192,29 +190,40 @@ body {
 
 @font-face {
   font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
-    format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 .today {
-  font-size: 3.25rem; /* Adjust the font size as needed */
-  color: #ffffff; /* Set the text color */
+  font-size: 3.25rem;
+  /* Adjust the font size as needed */
+  color: #ffffff;
+  /* Set the text color */
   font-family: "GmarketSansMedium", sans-serif;
 }
 
 .clock {
-  font-size: 5.5rem; /* Adjust the font size as needed */
-  color: #ffffff; /* Set the text color */
+  font-size: 5.5rem;
+  /* Adjust the font size as needed */
+  color: #ffffff;
+  /* Set the text color */
   font-family: "GmarketSansMedium", sans-serif;
 }
 
 /* Center the parent container */
 .parent {
-  flex-direction: column; /* 세로 방향으로 배치 */
+  flex-direction: column;
+  /* 세로 방향으로 배치 */
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, -15%);
+}
+
+#Date_ {
+  color: white; 
+  margin-block-end: 1rem; 
+  font-size: 2rem;
+  font-family: 'GmarketSansMedium', sans-serif;
 }
