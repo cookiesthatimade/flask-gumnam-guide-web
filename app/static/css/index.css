@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .border-top-primary {
   border-left: 1rem solid #29aafe !important;
 }
@@ -35,33 +42,6 @@
 .card:hover {
   transform: scale(1.05);
   /* 마우스 호버 시 약간 확대 */
-}
-
-.carousel-inner {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-
-.carousel-item-group {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.carousel-item {
-  flex: 0 0 33.33%;
-  /* 한 번에 보일 이미지 수에 따라 조절 (3장일 경우 33.33%) */
-  text-align: center;
-  /* 이미지 가운데 정렬을 위해 추가 */
-}
-
-.carousel-item img {
-  width: 100%;
-  /* 이미지를 부모 요소에 맞게 100%로 설정 */
-  max-width: 100%;
-  /* 이미지 원래 크기보다 크게 키우지 않도록 설정 */
-  height: auto;
-  /* 비율 유지를 위해 높이를 자동으로 조절 */
 }
 
 /* NAV */
@@ -154,6 +134,10 @@ nav .right .menu-list li a {
   padding-bottom: 4px;
 }
 
+.nav-link-1 {
+  font-family: 'GmarketSansMedium', sans-serif;
+}
+
 .nav-link:hover {
   color: #ffffff;
   /* 마우스 호버 시 색상을 다시 흰색으로 설정 */
@@ -188,14 +172,8 @@ body {
   color: #ff8000 !important;
 }
 
-@font-face {
-  font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 .today {
+  display: flex;
   font-size: 3.25rem;
   /* Adjust the font size as needed */
   color: #ffffff;
@@ -204,6 +182,7 @@ body {
 }
 
 .clock {
+  display: flex;
   font-size: 5.5rem;
   /* Adjust the font size as needed */
   color: #ffffff;
