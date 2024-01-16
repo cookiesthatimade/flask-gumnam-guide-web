@@ -29,6 +29,7 @@
   /* 카드 모서리 둥글게 */
   transition: transform 0.3s;
   /* 마우스 호버 시 부드러운 효과 */
+  font-family: "GmarketSansMedium", sans-serif;
 }
 
 .card:hover {
