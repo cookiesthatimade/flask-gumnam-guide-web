@@ -11,8 +11,6 @@ body {
   overflow-x: hidden;
 }
 
-
-
 a {
   text-decoration: none;
 }
@@ -22,7 +20,11 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-top: 2em;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
 }
 
 nav .left {
@@ -157,7 +159,6 @@ main {
   background-color: #141414;
 }
 
-
 main .title_st {
   width: 100%;
   float: left;
@@ -173,10 +174,9 @@ main .title_st {
 main .container h1.title_st span {
   color: #eeff06;
   /* 다른 색상으로 변경하세요 */
-  font-size: 20px;
+  font-size: 35px;
   /* 다른 크기로 변경하세요 */
 }
-
 
 label {
   display: inline-flex;
@@ -187,18 +187,15 @@ label {
   width: 100px;
   height: 100px;
   margin: 10px;
-  border: 3px solid #4CAF50;
+  border: 3px solid #4caf50;
   border-radius: 50%;
   background-color: #ffffff;
-  color: #4CAF50;
+  color: #4caf50;
   font-size: 40px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
-
-
-
 
 @media screen and (max-width: 1437px) {
   main .description {
@@ -213,7 +210,11 @@ label {
     justify-content: space-between;
     align-items: center;
     padding-top: 0.3em;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 10%,
+      rgba(0, 0, 0, 0)
+    );
   }
 
   nav .left {
@@ -245,7 +246,7 @@ label {
     margin-left: 10px;
   }
 
-  nav .left .mobile-menu:hover+.menu-list {
+  nav .left .mobile-menu:hover + .menu-list {
     display: flex;
   }
 
@@ -283,7 +284,6 @@ label {
   }
 }
 
-
 @media screen and (max-width: 1437px) {
   main .description {
     bottom: 10%;
@@ -297,7 +297,11 @@ label {
     justify-content: space-between;
     align-items: center;
     padding-top: 0.3em;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, rgba(0, 0, 0, 0));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 10%,
+      rgba(0, 0, 0, 0)
+    );
   }
 
   nav .left {
@@ -329,7 +333,7 @@ label {
     margin-left: 10px;
   }
 
-  nav .left .mobile-menu:hover+.menu-list {
+  nav .left .mobile-menu:hover + .menu-list {
     display: flex;
   }
 
@@ -371,17 +375,22 @@ label {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 0; /* 이미지 버튼 간의 간격 */
-  width: 100%; /* 이미지 버튼 컨테이너의 고정된 너비 */
-  height: 250px; /* 이미지 버튼 컨테이너의 고정된 높이 */
+  gap: 0;
+  /* 이미지 버튼 간의 간격 */
+  width: 100%;
+  /* 이미지 버튼 컨테이너의 고정된 너비 */
+  height: 250px;
+  /* 이미지 버튼 컨테이너의 고정된 높이 */
   justify-items: center;
 }
 
 .image-button {
   cursor: pointer;
   margin: 5px;
-  width: 500px; /* 이미지 버튼의 너비 */
-  height: 250px; /* 이미지 버튼의 높이 */
+  width: 500px;
+  /* 이미지 버튼의 너비 */
+  height: 250px;
+  /* 이미지 버튼의 높이 */
   border: none;
   background: none;
   padding: 0;
@@ -406,5 +415,71 @@ label {
   color: white;
   text-align: center;
   padding: 10px;
-  font-size: 24px; /* 텍스트 크기 조절 */
+  font-size: 24px;
+  /* 텍스트 크기 조절 */
+}
+
+/* Add your existing CSS styles here */
+
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+  z-index: 999; /* 높은 값으로 설정하여 모달이 위에 표시되도록 함 */
+}
+
+.modal-wrapper.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  width: 800px;
+  height: 800px;
+  position: fixed;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%; /* 원형으로 만들기 */
+  overflow: hidden; /* 원형 영역을 벗어나는 부분 숨기기 */
+  background-color: #1f2b6b;
+}
+
+.modal-wrapper.open .modal {
+  margin-top: -200px;
+  opacity: 1;
+}
+
+.btn-close {
+  font-size: 30px;
+  display: block;
+  float: right;
+  color: #fff;
+}
+
+.content {
+  padding: 5%;
+}
+
+.exit-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+.exit-number h1 {
+  font-size: 550px;
+  color: #ffffff;
+  margin: 0;
 }

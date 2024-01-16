@@ -32,7 +32,7 @@ for (let part = 0; part < numParts; part++) {
     imageFileNamesArray[part].forEach((fileName, relativeIndex) => {
       const div = document.createElement("div");
       div.className = "item";
-      div.innerHTML = `<img src="static/img/${fileName}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)">`;
+      div.innerHTML = `<img src="static/img/${fileName}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)" loading="lazy">`;
       sliderContainer.appendChild(div);
     });
   }

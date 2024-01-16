@@ -1,0 +1,70 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #ebebeb;
+}
+
+body img {
+  max-width: 50%; /* Adjust the max-width based on your preference */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure proper spacing and centering */
+  margin: 0 auto; /* Center the image horizontally */
+  margin-bottom: 10px;
+}
+
+.top-bar {
+  background-color: #1f2b6b;
+  width: 100%;
+  height: 15%;
+  position: relative;
+}
+
+.top-bar img {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 700px; /* 변경: 이미지의 최대 너비를 조절 */
+  height: auto;
+  margin: 0 auto;
+}
+
+.main-content {
+  width: 1080px;
+  height: 85%;
+  max-width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* 변경: main-content 안의 내용이 화면을 넘어가지 않도록 설정 */
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.slideshow-container {
+  max-width: 100%;
+  flex: 1;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+}
+
+.mySlides {
+  display: none;
+  width: 100%;
+  height: 100%;
+  max-width: 1580px;
+}
+
+.mySlides img {
+  width: 100%; /* Adjust the width based on your preference */
+  height: 98%;
+  max-width: 100%;
+  display: block; /* Ensure proper spacing and centering */
+  margin: 0 auto; /* Center the image horizontally */
+}

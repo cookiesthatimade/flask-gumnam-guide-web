@@ -13,6 +13,12 @@ connection = pymysql.connect(host='43.203.1.73',
                              db='subway',
                              cursorclass=pymysql.cursors.DictCursor)
 
+connection1 = pymysql.connect(host='3.34.168.81',
+                              user='stella',
+                              password='1111',
+                              db='sensor',
+                              cursorclass=pymysql.cursors.DictCursor)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -22,6 +28,11 @@ def index():
 @app.route('/escort')
 def escort():
     return render_template('escort.html')
+
+
+@app.route('/news')
+def news():
+    return render_template('news.html')
 
 
 @app.route('/info')
@@ -44,34 +55,31 @@ def info():
 def sensing_data():
     def respond_to_client():
 
-        korea_tz = timezone('Asia/Seoul')  # 대한민국 시간대
-        utc_tz = pytz.utc  # UTC 시간대
-
         while True:
-            connection = pymysql.connect(host='43.203.1.73',
-                                         user='root',
-                                         password='#leeseun80',
-                                         db='subway',
-                                         cursorclass=pymysql.cursors.DictCursor)
+            connection1 = pymysql.connect(host='3.34.168.81',
+                                          user='stella',
+                                          password='1111',
+                                          db='sensor',
+                                          cursorclass=pymysql.cursors.DictCursor)
 
-            with connection.cursor() as cursor:
+            with connection1.cursor() as cursor:
                 # 쿼리 실행하여 가장 최신의 데이터 하나 가져오기
                 cursor.execute(
-                    "SELECT * FROM `subway`.`sensing` ORDER BY `Date` DESC LIMIT 1;")
+                    "SELECT * FROM `sensor`.`env_data` ORDER BY `date` DESC LIMIT 1;")
                 latest_data = cursor.fetchone()  # 최신 데이터 가져오기
 
                 # UTC로부터 대한민국 시간대로 변환
-                korea_time = latest_data['Date'].replace(
-                    tzinfo=utc_tz).astimezone(korea_tz)
+                korea_time = latest_data['date']
 
                 # 데이터베이스에서 가져온 컬럼명을 기준으로 Dictionary 생성
                 _data = json.dumps({'Date': korea_time.strftime("%Y-%m-%d %H:%M:%S"), 'temperature': latest_data['temperature'], 'humidity': latest_data['humidity'],
-                                    'co2': latest_data['co2'], 'lux': latest_data['lux'], 'foot': latest_data['foot'], 'fire': latest_data['fire']})
+                                    'co2': latest_data['co2'], 'lux': latest_data['lux'], 'voc': latest_data['voc']})
 
                 yield f"id: 1\ndata: {_data}\nevent: online\n\n"
-                time.sleep(3000)  # 5초로 설정
+                time.sleep(50000)  # 5초로 설정해야함
 
     return Response(respond_to_client(), mimetype='text/event-stream')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

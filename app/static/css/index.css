@@ -1,182 +1,24 @@
-#wrapper {
-  height: auto;
-  min-height: 100%;
-}
-
-.site-footer {
-  margin-block-end: 1%;
-}
-
-.site-footer h6 {
-  color: #fff;
-  font-size: 16px;
-  text-transform: uppercase;
-  margin-top: 5px;
-  letter-spacing: 2px;
-}
-
-.site-footer a {
-  color: #737373;
-}
-
-.site-footer a:hover {
-  color: #3366cc;
-  text-decoration: none;
-}
-
-.footer-links {
-  padding-left: 0;
-  list-style: none;
-}
-
-.footer-links li {
-  display: block;
-}
-
-.footer-links a {
-  color: #737373;
-}
-
-.footer-links a:active,
-.footer-links a:focus,
-.footer-links a:hover {
-  color: #3366cc;
-  text-decoration: none;
-}
-
-.footer-links.inline li {
-  display: inline-block;
-}
-
-.site-footer .social-icons {
-  text-align: right;
-}
-
-.site-footer .social-icons a {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  margin-left: 6px;
-  margin-right: 0;
-  border-radius: 100%;
-  background-color: #33353d;
-}
-
-.copyright-text {
-  margin: 0;
-}
-
-@media (max-width: 991px) {
-  .site-footer [class^="col-"] {
-    margin-bottom: 30px;
-  }
-}
-
-@media (max-width: 767px) {
-  .site-footer {
-    padding-bottom: 0;
-  }
-
-  .site-footer .copyright-text,
-  .site-footer .social-icons {
-    text-align: center;
-  }
-}
-
-.social-icons {
-  padding-left: 0;
-  margin-bottom: 0;
-  list-style: none;
-}
-
-.social-icons li {
-  display: inline-block;
-  margin-bottom: 4px;
-}
-
-.social-icons li.title {
-  margin-right: 15px;
-  text-transform: uppercase;
-  color: #96a2b2;
-  font-weight: 700;
-  font-size: 13px;
-}
-
-.social-icons a {
-  background-color: #eceeef;
-  color: #818a91;
-  font-size: 16px;
-  display: inline-block;
-  line-height: 44px;
-  width: 44px;
-  height: 44px;
-  text-align: center;
-  margin-right: 8px;
-  border-radius: 100%;
-  -webkit-transition: all 0.2s linear;
-  -o-transition: all 0.2s linear;
-  transition: all 0.2s linear;
-}
-
-.social-icons a:active,
-.social-icons a:focus,
-.social-icons a:hover {
-  color: #fff;
-  background-color: #29aafe;
-}
-
-.social-icons.size-sm a {
-  line-height: 34px;
-  height: 34px;
-  width: 34px;
-  font-size: 14px;
-}
-
-.social-icons a.facebook:hover {
-  background-color: #3b5998;
-}
-
-.social-icons a.twitter:hover {
-  background-color: #00aced;
-}
-
-.social-icons a.linkedin:hover {
-  background-color: #007bb6;
-}
-
-.social-icons a.dribbble:hover {
-  background-color: #ea4c89;
-}
-
-@media (max-width: 767px) {
-  .social-icons li.title {
-    display: block;
-    margin-right: 0;
-    font-weight: 600;
-  }
-}
-
-.border-left-primary {
+.border-top-primary {
   border-left: 1rem solid #29aafe !important;
 }
 
-.border-left-warning {
+.border-top-warning {
   border-left: 1rem solid #ffc107 !important;
 }
 
-.border-left-danger {
+.border-top-danger {
   border-left: 1rem solid #ff8000 !important;
 }
 
-.border-left-info {
+.border-top-info {
   border-left: 1rem solid #b6e0fa !important;
 }
 
-.border-left-foot {
+.border-top-foot {
   border-left: 1rem solid #45484b !important;
 }
 
-.border-left-fire {
+.border-top-fire {
   border-left: 1rem solid #dc3545 !important;
 }
 
@@ -220,71 +62,6 @@
   height: auto;
   /* 비율 유지를 위해 높이를 자동으로 조절 */
 }
-
-/* blog section start */
-.about_taital {
-  width: 100%;
-  float: left;
-  font-size: 30px;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: bold;
-  padding-top: 30px;
-  padding-bottom: 0px;
-}
-
-.bulit_icon {
-  width: 100%;
-  text-align: center;
-}
-
-.blog_section_2 {
-  width: 100%;
-  float: left;
-  padding-top: 60px;
-  max-height: 550px;
-  overflow: hidden;
-  margin-block-end: 10%;
-}
-
-.blog_box {
-  width: 100%;
-  background-color: #ffffff;
-  box-shadow: 0px 5px 10px 0px;
-  padding: 0px 0px 30px 0px;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.prep_text {
-  width: 100%;
-  font-size: 20px;
-  color: #3b3b3b;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 20px 20px 10px 20px;
-}
-
-.lorem_text {
-  width: 100%;
-  font-size: 14px;
-  color: #3b3b3b;
-  margin: 0px;
-  padding: 0px 20px;
-}
-
-.col-md-6 {
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
-  max-width: 50%;
-  margin-block-end: 10%;
-}
-
-/* blog section end */
 
 /* NAV */
 
@@ -401,7 +178,7 @@ body {
 }
 
 .h2 {
-  font-size: 2.5rem;
+  font-size: 6.5rem;
 }
 
 .text-secondary1 {
@@ -410,4 +187,33 @@ body {
 
 .text-danger {
   color: #ff8000 !important;
+}
+
+@font-face {
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.today {
+  font-size: 3.25rem; /* Adjust the font size as needed */
+  color: #ffffff; /* Set the text color */
+  font-family: "GmarketSansMedium", sans-serif;
+}
+
+.clock {
+  font-size: 5.5rem; /* Adjust the font size as needed */
+  color: #ffffff; /* Set the text color */
+  font-family: "GmarketSansMedium", sans-serif;
+}
+
+/* Center the parent container */
+.parent {
+  flex-direction: column; /* 세로 방향으로 배치 */
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -15%);
 }
