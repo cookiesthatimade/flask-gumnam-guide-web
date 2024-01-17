@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,6 +29,15 @@
   border-left: 1rem solid #dc3545 !important;
 }
 
+
+#Date_ {
+  color: white; 
+  margin-block-end: 1rem; 
+  font-size: 2rem;
+  font-family: 'GmarketSansMedium', sans-serif;
+  margin-left: 20px;
+}
+
 .card {
   border: none;
   /* 카드 테두리 제거 */
@@ -36,7 +45,7 @@
   /* 카드 모서리 둥글게 */
   transition: transform 0.3s;
   /* 마우스 호버 시 부드러운 효과 */
-  font-family: "GmarketSansMedium", sans-serif;
+  font-family: 'GmarketSansMedium', sans-serif;
 }
 
 .card:hover {
@@ -54,14 +63,20 @@
   font-weight: bold;
 }
 
+.nav-link-1 {
+  font-family: 'GmarketSansMedium', sans-serif;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 2em;
-  background: linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.7) 10%,
-      rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
 }
 
 nav .left {
@@ -134,10 +149,6 @@ nav .right .menu-list li a {
   padding-bottom: 4px;
 }
 
-.nav-link-1 {
-  font-family: 'GmarketSansMedium', sans-serif;
-}
-
 .nav-link:hover {
   color: #ffffff;
   /* 마우스 호버 시 색상을 다시 흰색으로 설정 */
@@ -158,10 +169,14 @@ body {
 
 .tm-mb-74 {
   font-size: 2rem;
+  margin: 0;
 }
 
 .h2 {
-  font-size: 6.5rem;
+  font-size: 92px;
+  height: 100px;
+  margin-top: 2rem;
+  letter-spacing: -2px; /* 음수 값으로 조절하여 가로 간격을 줄입니다. */
 }
 
 .text-secondary1 {
@@ -173,36 +188,27 @@ body {
 }
 
 .today {
-  display: flex;
-  font-size: 3.25rem;
-  /* Adjust the font size as needed */
-  color: #ffffff;
-  /* Set the text color */
-  font-family: "GmarketSansMedium", sans-serif;
+  display : flex; 
+  font-size: 3.25rem; /* Adjust the font size as needed */
+  color: #ffffff; /* Set the text color */
+  font-family: 'GmarketSansMedium', sans-serif;
 }
 
 .clock {
-  display: flex;
-  font-size: 5.5rem;
-  /* Adjust the font size as needed */
-  color: #ffffff;
-  /* Set the text color */
-  font-family: "GmarketSansMedium", sans-serif;
+  display : flex; 
+  font-size: 5.5rem; /* Adjust the font size as needed */
+  color: #ffffff; /* Set the text color */
+  font-family: 'GmarketSansMedium', sans-serif;
+  height: 100px;
 }
+
 
 /* Center the parent container */
 .parent {
-  flex-direction: column;
-  /* 세로 방향으로 배치 */
-  position: fixed;
+  flex-direction: column; /* 세로 방향으로 배치 */
+  position: relative;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, -15%);
-}
-
-#Date_ {
-  color: white; 
-  margin-block-end: 1rem; 
-  font-size: 2rem;
-  font-family: 'GmarketSansMedium', sans-serif;
+  margin-top: 3rem;
 }

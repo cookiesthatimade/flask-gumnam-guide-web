@@ -202,6 +202,7 @@ section .content-list h1 {
   margin-bottom: 1rem;
   margin-top: 0.5rem;
   font-size: 30px;
+  font-family: 'GmarketSansMedium', sans-serif;
 }
 section .content-list .slider {
   display: flex;
