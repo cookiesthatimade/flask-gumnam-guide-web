@@ -28,19 +28,20 @@ var buttonTexts = [
 
 // 1부터 4까지의 이미지 버튼 생성
 for (var i = 1; i <= 4; i++) {
-  var imageButton = createImageButton(i);
+  var imageButton = createImageButton("button" + i, i);
   imgContainer.appendChild(imageButton);
 }
 
 // 19부터 22까지의 이미지 버튼 생성
 for (var j = 19; j <= 22; j++) {
-  var imageButton = createImageButton(j);
+  var imageButton = createImageButton("button" + j, j);
   imgContainer.appendChild(imageButton);
 }
 
 // 이미지 버튼을 생성하는 함수
-function createImageButton(value) {
+function createImageButton(id, value) {
   var imgButton = document.createElement("div");
+  imgButton.id = id;
   imgButton.className = "image-button";
   imgButton.style.backgroundImage = "url('/static/img/" + value + ".jpg')";
   imgButton.style.backgroundSize = "cover";
@@ -93,4 +94,44 @@ closeButton.addEventListener("click", closeModal);
 function closeModal() {
   var modalWrapper = document.querySelector(".modal-wrapper");
   modalWrapper.classList.remove("open");
+}
+
+const exitVoiceTexts = {
+  button1: "일번 출구로 안내합니다.",
+  button2: "이번 출구로 안내합니다.",
+  button3: "삼번 출구로 안내합니다.",
+  button4: "사번 출구로 안내합니다.",
+  button19: "십구번 출구로 안내합니다.",
+  button20: "이십번 출구로 안내합니다.",
+  button21: "이십일번 출구로 안내합니다.",
+  button22: "이십이번 출구로 안내합니다.",
+};
+
+// 각 버튼에 대한 이벤트 리스너 추가
+for (let i = 1; i <= 22; i++) {
+  const buttonId = "button" + i;
+  const button = document.querySelector("#" + buttonId + ".image-button");
+
+  if (button) {
+    button.addEventListener("click", () => {
+      if (
+        typeof SpeechSynthesisUtterance === "undefined" ||
+        typeof window.speechSynthesis === "undefined"
+      ) {
+        alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+        return;
+      }
+
+      const message = new SpeechSynthesisUtterance();
+      message.lang = "kr";
+      message.pitch = 1;
+      message.rate = 1;
+      message.volume = 1;
+
+      if (exitVoiceTexts.hasOwnProperty(buttonId)) {
+        message.text = exitVoiceTexts[buttonId];
+        window.speechSynthesis.speak(message);
+      }
+    });
+  }
 }
