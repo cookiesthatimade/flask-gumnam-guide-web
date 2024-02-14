@@ -1,6 +1,7 @@
 @font-face {
   font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -71,10 +72,8 @@ nav .right .menu-list li {
   align-items: center;
   justify-content: center;
   list-style: none;
-  padding: 0.2em 1em 0.5em 1em;
-}
-nav .right .menu-list li a {
-  font-size: 1.2rem;
+  margin-right: 2em;
+  /* padding: 0.2em 1em 0.5em 1em; */
 }
 
 .nav-item {
@@ -92,16 +91,12 @@ nav .right .menu-list li a {
 }
 
 .nav-link-1 {
-  font-family: 'GmarketSansMedium', sans-serif;
+  font-family: "GmarketSansMedium", sans-serif;
 }
 
 .nav-link-1.active,
 .nav-link-1:hover {
   border-color: #ffffff;
-}
-
-.menu-list .nav-link {
-  font-size: 200px;
 }
 
 .menu-list .nav-link.active {
@@ -202,7 +197,7 @@ section .content-list h1 {
   margin-bottom: 1rem;
   margin-top: 0.5rem;
   font-size: 30px;
-  font-family: 'GmarketSansMedium', sans-serif;
+  font-family: "GmarketSansMedium", sans-serif;
 }
 section .content-list .slider {
   display: flex;

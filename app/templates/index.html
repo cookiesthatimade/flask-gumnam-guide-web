@@ -1,201 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <!-- <meta http-equiv="refresh" content="10; url=/index2"> -->
+    <title>금남지하도상가 : 상가정보</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="static/css/templatemo-style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+  </head>
+  
+  
+<body onload="playWelcomeVoice()" onunload="stopWelcomeVoice()">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-  <!-- <meta http-equiv="refresh" content="5; url=/escort"> -->
-  <title>금남지하도상가 : 상가정보</title>
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="static/css/templatemo-style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="static/css/index.css" />
-</head>
-
-
-<body>
-  <nav>
-    <div class="left">
-      <div class="logo">
-        <a href="/"><img src="/static/img/logo.png" alt="" /></a>
+    <nav>
+      <div class="left">
+        <div class="logo">
+          <a href="/"><img src="/static/img/logo.png" alt="" /></a>
+        </div>
       </div>
-    </div>
-    <div class="right">
-      <div class="mobile-menu">메뉴</div>
-      <ul class="menu-list">
-        <li class="nav-item">
-          <a class="nav-link nav-link-1 active" href="/" style="font-size: 1.75rem;">실내환경정보</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-1" href="/escort" style="font-size: 1.5rem;">출입구정보</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-1" aria-current="page" href="/info" style="font-size: 1.5rem;">상가정보</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      <div class="right">
+        <div class="mobile-menu">메뉴</div>
+        <ul class="menu-list">
+          <li class="nav-item">
+            <a class="nav-link nav-link-1 active" href="/" style="font-size: 1.75rem;">환경정보1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-1" href="/index2" style="font-size: 1.5rem;">환경정보2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-1" href="/escort" style="font-size: 1.5rem;">출입구정보</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-1" href="/info" style="font-size: 1.5rem;">상가정보</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <div class="container-fluid tm-mt-60">
-    <h5 id="Date_"></h5>
-    <div class="row tm-mb-74">
-      <!-- Earnings (Monthly) Card Example -->
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-danger shadow h-80 py-5">
-          <!-- 변경된 클래스: border-top-danger -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center">
-                <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-thermometer-half fa-4x text-gray-300 mb-3" style="color: #ff8000"></i>
-                <!-- 변경된 클래스: mb-3 -->
-                <div class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1">온도</div>
-                <div id="temperature_" class="card-value h2 mb-0 font-weight-bold text-gray-800"></div>
+    <div class="container-fluid tm-mt-60">
+      <h1 id="robot-number">(써니봇 1)</h1>
+      <h5 id="Date_"></h5>
+      <div class="row tm-mb-74">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-danger shadow h-80 py-5">
+            <!-- 변경된 클래스: border-top-danger -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center">
+                  <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-thermometer-half fa-4x text-gray-300 mb-3" style="color: #ff8000"></i> <!-- 변경된 클래스: mb-3 -->
+                  <div class="card-title text-xs font-weight-bold text-danger text-uppercase mb-1">온도</div>
+                  <div id="temperature_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-primary shadow h-100 py-5">
-          <!-- 변경된 클래스: border-left-primary → border-top-primary, h-80 → h-100 -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center">
-                <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-tint fa-4x text-gray-300 mb-3" style="color: #29aafe"></i>
-                <!-- 변경된 클래스: mb-5 → mb-3 -->
-                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">습도</div>
-                <div id="humidity_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-primary shadow h-100 py-5">
+            <!-- 변경된 클래스: border-left-primary → border-top-primary, h-80 → h-100 -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center">
+                  <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-tint fa-4x text-gray-300 mb-3" style="color: #29aafe"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">습도</div>
+                  <div id="humidity_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-info shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-cloud fa-4x text-gray-300 mb-3" style="color: #b6e0fa"></i>
-                <!-- 변경된 클래스: mb-5 → mb-3 -->
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">공기질</div>
-                <div id="co2_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-info shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-cloud fa-4x text-gray-300 mb-3" style="color: #b6e0fa"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
+                  <div class="text-xs font-weight-bold text-info text-uppercase mb-1">공기질</div>
+                  <div id="co2_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-warning shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-lightbulb fa-4x text-gray-300 mb-3" style="color: #ffc107"></i>
-                <!-- 변경된 클래스: mb-5 → mb-3 -->
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">조도</div>
-                <div id="lux_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-warning shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-lightbulb fa-4x text-gray-300 mb-3" style="color: #ffc107"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
+                  <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">조도</div>
+                  <div id="lux_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-foot shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-user-friends fa-4x text-gray-300 mb-3"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
-                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">유동인구</div>
-                <div id="foot_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-foot shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-user-friends fa-4x text-gray-300 mb-3"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
+                  <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">유동인구</div>
+                  <div id="foot_" class="h2 mb-0 font-weight-bold text-gray-800">100명</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-md-6 mb-4">
-        <div class="card border-top-fire shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
-          <div class="card-body">
-            <div class="row no-gutters align-items-center justify-content-center">
-              <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
-                <i class="fas fa-fire-alt fa-4x text-gray-300 mb-3" style="color: #dc3545"></i>
-                <!-- 변경된 클래스: mb-5 → mb-3 -->
-                <div class="text-xs font-weight-bold text-secondary1 text-uppercase mb-1">화재</div>
-                <div id="voc_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+        <div class="col-md-6 mb-4">
+          <div class="card border-top-fire shadow h-100 py-5"> <!-- 변경된 클래스: border-left-info → border-top-info -->
+            <div class="card-body">
+              <div class="row no-gutters align-items-center justify-content-center">
+                <div class="col-auto text-center"> <!-- 변경된 클래스: col-auto, text-center -->
+                  <i class="fas fa-fire-alt fa-4x text-gray-300 mb-3" style="color: #dc3545"></i> <!-- 변경된 클래스: mb-5 → mb-3 -->
+                  <div class="text-xs font-weight-bold text-secondary1 text-uppercase mb-1">화재</div>
+                  <div id="voc_" class="h2 mb-0 font-weight-bold text-gray-800"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="parent d-flex justify-content-center align-items-center text-center">
-        <div class="today"></div>
-        <div class="clock"></div>
-      </div>
+        <div class="parent d-flex justify-content-center align-items-center text-center">
+          <div class="today"></div>
+          <div class="clock"></div>
+        </div>
 
-      <!-- jQuery CDN -->
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+    <script>
+      var eventSource3 = new EventSource('/sensing_data')
+      eventSource3.addEventListener(
+        'message',
+        function (e) {
+          console.log(e.data)
+        },
+        false
+      )
+      
+      eventSource3.addEventListener('online', function (e) {
+        data = JSON.parse(e.data)
+      
+        var date = data.Date
+        var temperature = data.temperature
+        var humidity = data.humidity
+        var co2 = data.co2
+        var lux = data.lux
+        var foot = data.foot
+        var voc = data.voc
+      
+        document.getElementById('Date_').innerHTML = date + ' 기준'
+        document.getElementById('temperature_').innerHTML = temperature + ' °C'
+        document.getElementById('humidity_').innerHTML = humidity + ' %'
+        document.getElementById('co2_').innerHTML = co2 + ' ppm'
+        document.getElementById('lux_').innerHTML = lux + ' lux'
+        document.getElementById("foot_").innerText = Math.floor(Math.random() * 10)  + ' 명';
+        document.getElementById('voc_').innerHTML = voc + ' 단계'
+      })
+    </script>
+
+    <script>
+      const clock = document.querySelector(".clock"); 
+      const today = document.querySelector(".today");
 
 
-      <script>
-        var eventSource3 = new EventSource('/sensing_data')
-        eventSource3.addEventListener(
-          'message',
-          function (e) {
-            console.log(e.data)
-          },
-          false
-        )
-
-        eventSource3.addEventListener('online', function (e) {
-          data = JSON.parse(e.data)
-
-          var date = data.Date
-          var temperature = data.temperature
-          var humidity = data.humidity
-          var co2 = data.co2
-          var lux = data.lux
-          var foot = data.foot
-          var voc = data.voc
-
-          document.getElementById('Date_').innerHTML = date + ' 기준'
-          document.getElementById('temperature_').innerHTML = temperature + ' °C'
-          document.getElementById('humidity_').innerHTML = humidity + ' %'
-          document.getElementById('co2_').innerHTML = co2 + ' ppm'
-          document.getElementById('lux_').innerHTML = lux + ' lux'
-          document.getElementById("foot_").innerText = Math.floor(Math.random() * 1000) + ' 명';
-          document.getElementById('voc_').innerHTML = voc + ' 단계'
-        })
-      </script>
-
-      <script>
-        const clock = document.querySelector(".clock");
-        const today = document.querySelector(".today");
-
-
-        function getClock() {
+      function getClock() {
           const date = new Date();
           const hours = String(date.getHours()).padStart(2, "0");
           const minutes = String(date.getMinutes()).padStart(2, "0");
           const seconds = String(date.getSeconds()).padStart(2, "0");
 
           clock.innerText = `${hours}:${minutes}:${seconds} `;
-        }
+      }
 
 
-        getClock();
-        setInterval(getClock, 1000);
+      getClock(); 
+      setInterval(getClock, 1000); 
 
 
-        function getToday() {
+      function getToday() {
 
           const todaydate = new Date();
           const days = ['(일)', '(월)', '(화)', '(수)', '(목)', '(금)', '(토)'];
@@ -209,11 +207,40 @@
 
           today.innerText = `${year}년 ${month}월 ${date}일 ${day}`;
 
-        }
-        getToday();
-      </script>
-      
+      }
+      getToday();
+    </script>
+    <script>
+      // 음성 재생을 위한 변수
+let welcomeVoice;
 
-</body>
+function playWelcomeVoice() {
+  if (
+    typeof SpeechSynthesisUtterance === "undefined" ||
+    typeof window.speechSynthesis === "undefined"
+  ) {
+    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+    return;
+  }
 
+  welcomeVoice = new SpeechSynthesisUtterance();
+  welcomeVoice.lang = "ko-KR";
+  welcomeVoice.pitch = 1;
+  welcomeVoice.rate = 1;
+  welcomeVoice.volume = 1;
+  welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
+  window.speechSynthesis.speak(welcomeVoice);
+}
+
+// 페이지를 이동할 때 음성 재생을 멈추는 함수
+function stopWelcomeVoice() {
+  if (welcomeVoice && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  }
+}
+
+    </script>
+    
+
+  </body>
 </html>

@@ -1,6 +1,7 @@
 @font-face {
   font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -82,7 +83,7 @@ nav .right .menu-list li {
   align-items: center;
   justify-content: center;
   list-style: none;
-  padding: 0.2em 1em 0.5em 1em;
+  /* padding: 0.2em 1em 0.5em 1em; */
 }
 
 nav .right .menu-list li a {
@@ -105,7 +106,7 @@ nav .right .menu-list li a {
 }
 
 .nav-link-1 {
-  font-family: 'GmarketSansMedium', sans-serif;
+  font-family: "GmarketSansMedium", sans-serif;
 }
 
 .nav-link-1.active,
@@ -180,6 +181,8 @@ main .title_st {
   margin-left: 2rem;
   padding-top: 30px;
   padding-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 main .container h1.title_st span {
@@ -187,6 +190,7 @@ main .container h1.title_st span {
   /* 다른 색상으로 변경하세요 */
   font-size: 35px;
   /* 다른 크기로 변경하세요 */
+  margin-left: 10px;
 }
 
 label {
@@ -384,8 +388,8 @@ label {
 
 #imgContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 0;
   /* 이미지 버튼 간의 간격 */
   width: 100%;
@@ -398,9 +402,9 @@ label {
 .image-button {
   cursor: pointer;
   margin: 5px;
-  width: 500px;
+  width: 330px;
   /* 이미지 버튼의 너비 */
-  height: 250px;
+  height: 330px;
   /* 이미지 버튼의 높이 */
   border: none;
   background: none;
@@ -430,6 +434,62 @@ label {
   /* 텍스트 크기 조절 */
 }
 
+.map-button {
+  margin-left: auto;
+  background-color: #fcfcfc;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family: "GmarketSansMedium", sans-serif;
+  margin: 10px 40%;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.map-button i {
+  margin-right: 10px; /* 아이콘과 텍스트 사이의 오른쪽 여백 설정 */
+}
+
+/* CSS 스타일링을 추가할 수 있습니다. */
+.img-modal {
+  display: none; /* 초기에 모달은 숨겨진 상태입니다. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 반투명한 배경을 만듭니다. */
+  z-index: 9999; /* 다른 요소 위에 표시될 수 있도록 z-index 설정 */
+}
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+}
+.modal-content img {
+  max-width: 1080px;
+  max-height: 500px; /* 모달 내 이미지가 너무 크지 않도록 최대 높이 제한 */
+  margin-top: 20px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 50px;
+  color: black;
+}
+
 /* Add your existing CSS styles here */
 
 .modal-wrapper {
@@ -441,7 +501,8 @@ label {
   visibility: hidden;
   opacity: 0;
   transition: all 0.25s ease-in-out;
-  z-index: 999; /* 높은 값으로 설정하여 모달이 위에 표시되도록 함 */
+  z-index: 999;
+  /* 높은 값으로 설정하여 모달이 위에 표시되도록 함 */
 }
 
 .modal-wrapper.open {
@@ -459,8 +520,10 @@ label {
   background: #fff;
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  border-radius: 50%; /* 원형으로 만들기 */
-  overflow: hidden; /* 원형 영역을 벗어나는 부분 숨기기 */
+  border-radius: 50%;
+  /* 원형으로 만들기 */
+  overflow: hidden;
+  /* 원형 영역을 벗어나는 부분 숨기기 */
   background-color: #1f2b6b;
 }
 
@@ -490,7 +553,536 @@ label {
 }
 
 .exit-number h1 {
-  font-size: 550px;
+  font-size: 520px;
   color: #ffffff;
   margin: 0;
+}
+
+/*------------------*/
+.m-container {
+  width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+.m-container div {
+  margin-bottom: 50px;
+}
+
+.answer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 3.5vw;
+}
+
+.query {
+  font-size: 2vw;
+  opacity: 0.5;
+}
+
+/* 마이크 버튼, 마이크 로더, 웨이브 컨테이너를 배치합니다. */
+.mic-button,
+.mic-button-loader,
+.waveContainer {
+  position: fixed;
+  z-index: 9999; /* 다른 요소 위에 표시될 수 있도록 높은 z-index 값을 설정합니다. */
+  /* 필요한 위치와 스타일을 설정하세요. */
+}
+
+.mic-button {
+  position: relative;
+  /* .mic-button의 위치를 상대적으로 지정합니다. */
+  flex: 1;
+  height: 250px;
+  width: 250px;
+  text-align: center;
+  line-height: 250px;
+  font-size: 100px;
+  background: #333333;
+  border-radius: 100%;
+  color: #777;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  z-index: 2;
+}
+
+.mic-button:hover {
+  transform: scale(1.1);
+  color: white;
+}
+
+.mic-button:active {
+  transform: scale(0.8);
+  color: #555;
+}
+
+.m-active {
+  color: rgb(250, 248, 248);
+  /* 빨간색으로 변경할 색상을 지정합니다. */
+  transition: color 0.5s ease;
+  /* 변경 속도를 0.5초로 설정합니다. */
+}
+
+.mic-button-loader {
+  position: absolute;
+  /* 상대적으로 위치를 조정하기 위해 position: absolute;를 추가합니다. */
+  height: 250px;
+  width: 250px;
+  background-color: transparent;
+  transform: rotateY(180deg);
+  top: 0;
+  /* .mic-button의 좌측 상단에 위치하도록 조정합니다. */
+  left: 0;
+  /* .mic-button의 좌측 상단에 위치하도록 조정합니다. */
+  z-index: 2;
+}
+
+.mic-button-loader.active {
+  border-top: 5px solid #aa1111;
+  border-radius: 100%;
+  animation: borderLoader 1.3s 0.2s ease-in-out infinite;
+}
+
+@keyframes rainbowBorder {
+  0% {
+    border-top-color: red;
+  }
+  16.666% {
+    border-top-color: orange;
+  }
+  33.333% {
+    border-top-color: yellow;
+  }
+  50% {
+    border-top-color: green;
+  }
+  66.666% {
+    border-top-color: blue;
+  }
+  83.333% {
+    border-top-color: indigo;
+  }
+  100% {
+    border-top-color: violet;
+  }
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+.mic-button-loader.active {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  background-color: transparent;
+  transform: rotateY(180deg);
+  top: 0;
+  left: 0;
+  border-top: 5px solid red; /* 초기 색상 설정 */
+  border-radius: 100%;
+  animation: rainbowBorder 2s 0.2s ease-in-out infinite;
+}
+
+/*-------------------------------------*/
+
+.waveContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 55%;
+  transform: translate3d(0, -50%, 0);
+  -webkit-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  --boxSize: 10px;
+  --gutter: 10px; /* wave 사이의 간격을 늘림 */
+  width: calc((var(--boxSize) + var(--gutter)) * 15);
+  align-items: center;
+  z-index: 2;
+}
+
+.wave {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+  height: 50%;
+  width: var(--boxSize);
+  -webkit-animation-duration: 0.8s;
+  animation-duration: 0.8s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  border-radius: 80px;
+}
+
+.wave1 {
+  -webkit-animation-name: random1;
+  animation-name: random1;
+  background: #ffffff;
+}
+
+.wave2 {
+  -webkit-animation-name: random2;
+  animation-name: random2;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+  background: #ffffff;
+}
+
+.wave3 {
+  -webkit-animation-name: random3;
+  animation-name: random3;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  background: #ffffff;
+}
+
+.wave4 {
+  -webkit-animation-name: random4;
+  animation-name: random4;
+  -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+  background: #ffffff;
+}
+
+.wave5 {
+  -webkit-animation-name: random5;
+  animation-name: random5;
+  -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+  background: #ffffff;
+}
+
+.wave6 {
+  -webkit-animation-name: random6;
+  animation-name: random6;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  background: #ffffff;
+}
+
+.wave7 {
+  -webkit-animation-name: random7;
+  animation-name: random7;
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+  background: #ffffff;
+}
+
+.wave8 {
+  -webkit-animation-name: random8;
+  animation-name: random8;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+  background: #ffffff;
+}
+
+.wave9 {
+  -webkit-animation-name: random9;
+  animation-name: random9;
+  -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  background: #ffffff;
+}
+
+.wave10 {
+  -webkit-animation-name: random10;
+  animation-name: random10;
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+  background: #ffffff;
+}
+
+@-webkit-keyframes random1 {
+  0% {
+    height: 25%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  100% {
+    height: 25%;
+  }
+}
+
+@keyframes random1 {
+  0% {
+    height: 25%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  100% {
+    height: 25%;
+  }
+}
+
+@-webkit-keyframes random2 {
+  0% {
+    height: 22%;
+  }
+
+  50% {
+    height: 65%;
+  }
+
+  100% {
+    height: 22%;
+  }
+}
+
+@keyframes random2 {
+  0% {
+    height: 22%;
+  }
+
+  50% {
+    height: 65%;
+  }
+
+  100% {
+    height: 22%;
+  }
+}
+
+@-webkit-keyframes random3 {
+  0% {
+    height: 65%;
+  }
+
+  50% {
+    height: 20%;
+  }
+
+  100% {
+    height: 65%;
+  }
+}
+
+@keyframes random3 {
+  0% {
+    height: 65%;
+  }
+
+  50% {
+    height: 20%;
+  }
+
+  100% {
+    height: 65%;
+  }
+}
+
+@-webkit-keyframes random4 {
+  0% {
+    height: 20%;
+  }
+
+  50% {
+    height: 80%;
+  }
+
+  100% {
+    height: 20%;
+  }
+}
+
+@keyframes random4 {
+  0% {
+    height: 20%;
+  }
+
+  50% {
+    height: 80%;
+  }
+
+  100% {
+    height: 20%;
+  }
+}
+
+@-webkit-keyframes random5 {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 35%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes random5 {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 35%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@-webkit-keyframes random6 {
+  0% {
+    height: 25%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  100% {
+    height: 25%;
+  }
+}
+
+@keyframes random6 {
+  0% {
+    height: 25%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  100% {
+    height: 25%;
+  }
+}
+
+@-webkit-keyframes random7 {
+  0% {
+    height: 22%;
+  }
+
+  50% {
+    height: 65%;
+  }
+
+  100% {
+    height: 22%;
+  }
+}
+
+@keyframes random7 {
+  0% {
+    height: 22%;
+  }
+
+  50% {
+    height: 65%;
+  }
+
+  100% {
+    height: 22%;
+  }
+}
+
+@-webkit-keyframes random8 {
+  0% {
+    height: 65%;
+  }
+
+  50% {
+    height: 20%;
+  }
+
+  100% {
+    height: 65%;
+  }
+}
+
+@keyframes random8 {
+  0% {
+    height: 65%;
+  }
+
+  50% {
+    height: 20%;
+  }
+
+  100% {
+    height: 65%;
+  }
+}
+
+@-webkit-keyframes random9 {
+  0% {
+    height: 20%;
+  }
+
+  50% {
+    height: 80%;
+  }
+
+  100% {
+    height: 20%;
+  }
+}
+
+@keyframes random9 {
+  0% {
+    height: 20%;
+  }
+
+  50% {
+    height: 80%;
+  }
+
+  100% {
+    height: 20%;
+  }
+}
+
+@-webkit-keyframes random10 {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 35%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes random10 {
+  0% {
+    height: 100%;
+  }
+
+  50% {
+    height: 35%;
+  }
+
+  100% {
+    height: 100%;
+  }
 }

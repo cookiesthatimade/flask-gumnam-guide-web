@@ -189,3 +189,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// 음성 재생을 위한 변수
+let welcomeVoice;
+
+function playWelcomeVoice() {
+  if (
+    typeof SpeechSynthesisUtterance === "undefined" ||
+    typeof window.speechSynthesis === "undefined"
+  ) {
+    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+    return;
+  }
+
+  welcomeVoice = new SpeechSynthesisUtterance();
+  welcomeVoice.lang = "ko-KR";
+  welcomeVoice.pitch = 1;
+  welcomeVoice.rate = 1;
+  welcomeVoice.volume = 1;
+  welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
+  window.speechSynthesis.speak(welcomeVoice);
+}
+
+// 페이지를 이동할 때 음성 재생을 멈추는 함수
+function stopWelcomeVoice() {
+  if (welcomeVoice && window.speechSynthesis.speaking) {
+    window.speechSynthesis.cancel();
+  }
+}
