@@ -15,7 +15,7 @@
   </head>
   
   
-<body onload="playWelcomeVoice()" onunload="stopWelcomeVoice()">
+<body>
 
     <nav>
       <div class="left">
@@ -212,35 +212,40 @@
     </script>
     <script>
       // 음성 재생을 위한 변수
-let welcomeVoice;
+      let welcomeVoice;
 
-function playWelcomeVoice() {
-  if (
-    typeof SpeechSynthesisUtterance === "undefined" ||
-    typeof window.speechSynthesis === "undefined"
-  ) {
-    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
-    return;
-  }
+      // 페이지 로드 시 실행할 함수
+      window.addEventListener('DOMContentLoaded', function () {
+          playWelcomeVoice();
+      });
 
-  welcomeVoice = new SpeechSynthesisUtterance();
-  welcomeVoice.lang = "ko-KR";
-  welcomeVoice.pitch = 1;
-  welcomeVoice.rate = 1;
-  welcomeVoice.volume = 1;
-  welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
-  window.speechSynthesis.speak(welcomeVoice);
-}
+      // 페이지 언로드 시 실행할 함수
+      window.addEventListener('beforeunload', function () {
+          stopWelcomeVoice();
+      });
 
-// 페이지를 이동할 때 음성 재생을 멈추는 함수
-function stopWelcomeVoice() {
-  if (welcomeVoice && window.speechSynthesis.speaking) {
-    window.speechSynthesis.cancel();
-  }
-}
+      // 사용자 활동에 의해 호출되는 함수
+      function playWelcomeVoice() {
+          if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
+              alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+              return;
+          }
 
+          welcomeVoice = new SpeechSynthesisUtterance();
+          welcomeVoice.lang = "ko-KR";
+          welcomeVoice.pitch = 1;
+          welcomeVoice.rate = 1;
+          welcomeVoice.volume = 1;
+          welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
+          window.speechSynthesis.speak(welcomeVoice);
+      }
+
+      // 페이지를 이동할 때 음성 재생을 멈추는 함수
+      function stopWelcomeVoice() {
+          if (window.speechSynthesis.speaking) {
+              window.speechSynthesis.cancel();
+          }
+      }
     </script>
-    
-
   </body>
 </html>

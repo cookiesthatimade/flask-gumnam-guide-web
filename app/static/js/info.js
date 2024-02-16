@@ -214,6 +214,17 @@ document.addEventListener("DOMContentLoaded", function () {
 // 음성 재생을 위한 변수
 let welcomeVoice;
 
+// 페이지 로드 시 실행할 함수
+window.addEventListener("DOMContentLoaded", function () {
+  playWelcomeVoice();
+});
+
+// 페이지 언로드 시 실행할 함수
+window.addEventListener("beforeunload", function () {
+  stopWelcomeVoice();
+});
+
+// 사용자 활동에 의해 호출되는 함수
 function playWelcomeVoice() {
   if (
     typeof SpeechSynthesisUtterance === "undefined" ||
@@ -234,16 +245,7 @@ function playWelcomeVoice() {
 
 // 페이지를 이동할 때 음성 재생을 멈추는 함수
 function stopWelcomeVoice() {
-  if (welcomeVoice && window.speechSynthesis.speaking) {
+  if (window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
   }
 }
-
-// 각 이미지의 lazy loading을 위해 Intersection Observer를 등록
-function observeImages() {
-  const images = document.querySelectorAll(".item img");
-  images.forEach((img) => observer.observe(img));
-}
-
-// 초기 로딩 시 이미지 감시
-observeImages();
