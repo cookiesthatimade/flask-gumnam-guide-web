@@ -1,115 +1,19 @@
 const imagesPerPart = [44, 43, 43, 27, 13, 7, 5, 3, 7];
-
 const numParts = imagesPerPart.length;
+let imageCounter = 1;
 
 const imageFileNamesArray = [];
 
-let imageCounter = 1;
-
+// 이미지 파일 이름 배열 생성
 for (let part = 0; part < numParts; part++) {
   const partImageCount = imagesPerPart[part];
-
   const imageFileNames = [];
   for (let i = 0; i < partImageCount; i++) {
     imageFileNames.push(`img-${imageCounter}.png`);
     imageCounter++;
   }
-
   imageFileNamesArray.push(imageFileNames);
 }
-
-console.log(imageFileNamesArray);
-
-// 각 카테고리에 대한 슬라이더와 버튼 추가
-for (let part = 0; part < numParts; part++) {
-  const sliderContainer = document.querySelector(`.slider-${part + 1}`);
-  const nextButton = document.querySelector(`.next-${part + 1}`);
-  const prevButton = document.querySelector(`.prev-${part + 1}`);
-
-  // 이미지를 슬라이더에 추가
-  const sliderImages = sliderContainer.querySelectorAll(".item img");
-  if (sliderImages.length === 0) {
-    imageFileNamesArray[part].forEach((fileName, relativeIndex) => {
-      const div = document.createElement("div");
-      div.className = "item";
-      div.innerHTML = `<img src="static/img/${fileName}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)" loading="lazy">`;
-      sliderContainer.appendChild(div);
-    });
-  }
-
-  // 슬라이더 기능 추가 (이미지 슬라이드)
-  nextButton.addEventListener("click", () => {
-    sliderContainer.scrollBy({
-      left: sliderContainer.offsetWidth,
-      behavior: "smooth",
-    });
-  });
-
-  prevButton.addEventListener("click", () => {
-    sliderContainer.scrollBy({
-      left: -sliderContainer.offsetWidth,
-      behavior: "smooth",
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const searchInput = document.getElementById("searchInput");
-  const searchButton = document.getElementById("searchButton");
-  const resetButton = document.getElementById("resetButton");
-
-  // 검색 버튼 클릭 시 또는 엔터키 입력 시 검색 실행
-  function performSearch() {
-    const searchTerm = searchInput.value.trim(); // 검색어
-
-    // 모든 이미지 삭제
-    for (let part = 0; part < numParts; part++) {
-      const sliderContainer = document.querySelector(`.slider-${part + 1}`);
-      const sliderImages = sliderContainer.querySelectorAll(".item");
-      sliderImages.forEach((item) => {
-        item.remove();
-      });
-    }
-
-    // 검색어와 일치하는 이미지만 해당 슬라이더에 추가
-    let startIndex = 0;
-    for (let part = 0; part < numParts; part++) {
-      const partImagesCount = imagesPerPart[part];
-      for (let i = startIndex; i < startIndex + partImagesCount; i++) {
-        if (imageDescriptions[i].name.toLowerCase().includes(searchTerm)) {
-          const relativeIndex = i - startIndex;
-          const img = document.createElement("div");
-          img.className = "item";
-          img.innerHTML = `<img src="static/img/${imageFileNamesArray[part][relativeIndex]}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)">`;
-          const sliderContainer = document.querySelector(`.slider-${part + 1}`);
-          sliderContainer.appendChild(img);
-        }
-      }
-      startIndex += partImagesCount;
-    }
-
-    // 필터된 항목이 없으면 알림 표시
-    const filteredImages = document.querySelectorAll(".item");
-    if (filteredImages.length === 0) {
-      alert("일치하는 상가가 없습니다.");
-    }
-  }
-  // 검색 버튼 클릭 시 검색 실행
-  searchButton.addEventListener("click", performSearch);
-
-  // 엔터키 입력 시 검색 실행
-  searchInput.addEventListener("keypress", function (event) {
-    // 엔터키를 누른 경우 (keyCode 13)
-    if (event.keyCode === 13) {
-      performSearch();
-    }
-  });
-  // 초기화 버튼 클릭 시 페이지 새로고침
-  resetButton.addEventListener("click", function () {
-    searchInput.value = ""; // 검색어 초기화
-    location.reload(); // 페이지 새로고침
-  });
-});
 
 // 이미지 클릭 핸들러 추가
 function handleImageClick(clickedImage) {
@@ -190,6 +94,123 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// 이미지를 lazy loading하여 화면에 보이는 이미지만 로딩되도록 설정
+const options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 0.1, // 이미지가 화면의 10% 이상 보일 때 로드합니다.
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      const part = parseInt(img.dataset.part);
+      const relativeIndex = parseInt(img.dataset.relativeIndex);
+      const dataIndex =
+        relativeIndex + imagesPerPart.slice(0, part).reduce((a, b) => a + b, 0);
+      const fileName = `img-${dataIndex + 1}.png`;
+
+      img.src = `static/img/${fileName}`;
+
+      observer.unobserve(img); // 이미지를 한 번 로드한 후 관찰 해제
+    }
+  });
+}, options);
+
+// 각 카테고리에 대한 슬라이더와 버튼 추가
+for (let part = 0; part < numParts; part++) {
+  const sliderContainer = document.querySelector(`.slider-${part + 1}`);
+  const nextButton = document.querySelector(`.next-${part + 1}`);
+  const prevButton = document.querySelector(`.prev-${part + 1}`);
+
+  // 이미지를 슬라이더에 추가
+  const sliderImages = sliderContainer.querySelectorAll(".item img");
+  if (sliderImages.length === 0) {
+    imageFileNamesArray[part].forEach((fileName, relativeIndex) => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `<img src="static/img/${fileName}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)" loading="lazy">`;
+      sliderContainer.appendChild(div);
+    });
+  }
+
+  // 슬라이더 기능 추가 (이미지 슬라이드)
+  nextButton.addEventListener("click", () => {
+    sliderContainer.scrollBy({
+      left: sliderContainer.offsetWidth,
+      behavior: "smooth",
+    });
+  });
+
+  prevButton.addEventListener("click", () => {
+    sliderContainer.scrollBy({
+      left: -sliderContainer.offsetWidth,
+      behavior: "smooth",
+    });
+  });
+}
+
+// 검색 버튼 클릭 시 또는 엔터키 입력 시 검색 실행
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("searchInput");
+  const searchButton = document.getElementById("searchButton");
+  const resetButton = document.getElementById("resetButton");
+
+  // 검색 버튼 클릭 시 또는 엔터키 입력 시 검색 실행
+  function performSearch() {
+    const searchTerm = searchInput.value.trim(); // 검색어
+
+    // 모든 이미지 삭제
+    for (let part = 0; part < numParts; part++) {
+      const sliderContainer = document.querySelector(`.slider-${part + 1}`);
+      const sliderImages = sliderContainer.querySelectorAll(".item");
+      sliderImages.forEach((item) => {
+        item.remove();
+      });
+    }
+
+    // 검색어와 일치하는 이미지만 해당 슬라이더에 추가
+    let startIndex = 0;
+    for (let part = 0; part < numParts; part++) {
+      const partImagesCount = imagesPerPart[part];
+      for (let i = startIndex; i < startIndex + partImagesCount; i++) {
+        if (imageDescriptions[i].name.toLowerCase().includes(searchTerm)) {
+          const relativeIndex = i - startIndex;
+          const img = document.createElement("div");
+          img.className = "item";
+          img.innerHTML = `<img src="static/img/${imageFileNamesArray[part][relativeIndex]}" alt="" data-part="${part}" data-relative-index="${relativeIndex}" onclick="handleImageClick(this)">`;
+          const sliderContainer = document.querySelector(`.slider-${part + 1}`);
+          sliderContainer.appendChild(img);
+        }
+      }
+      startIndex += partImagesCount;
+    }
+
+    // 필터된 항목이 없으면 알림 표시
+    const filteredImages = document.querySelectorAll(".item");
+    if (filteredImages.length === 0) {
+      alert("일치하는 상가가 없습니다.");
+    }
+  }
+
+  // 검색 버튼 클릭 시 검색 실행
+  searchButton.addEventListener("click", performSearch);
+
+  // 엔터키 입력 시 검색 실행
+  searchInput.addEventListener("keypress", function (event) {
+    // 엔터키를 누른 경우 (keyCode 13)
+    if (event.keyCode === 13) {
+      performSearch();
+    }
+  });
+  // 초기화 버튼 클릭 시 페이지 새로고침
+  resetButton.addEventListener("click", function () {
+    searchInput.value = ""; // 검색어 초기화
+    location.reload(); // 페이지 새로고침
+  });
+});
+
 // 음성 재생을 위한 변수
 let welcomeVoice;
 
@@ -217,3 +238,12 @@ function stopWelcomeVoice() {
     window.speechSynthesis.cancel();
   }
 }
+
+// 각 이미지의 lazy loading을 위해 Intersection Observer를 등록
+function observeImages() {
+  const images = document.querySelectorAll(".item img");
+  images.forEach((img) => observer.observe(img));
+}
+
+// 초기 로딩 시 이미지 감시
+observeImages();
