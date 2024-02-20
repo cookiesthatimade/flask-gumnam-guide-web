@@ -1056,3 +1056,25 @@
 [2024-02-14 17:40:49,571] INFO in _internal: 127.0.0.1 - - [14/Feb/2024 17:40:49] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
 [2024-02-14 17:40:49,573] INFO in _internal: 127.0.0.1 - - [14/Feb/2024 17:40:49] "[36mGET /static/img/logo.png HTTP/1.1[0m" 304 -
 [2024-02-14 17:40:49,824] INFO in _internal: 127.0.0.1 - - [14/Feb/2024 17:40:49] "GET /sensing_data HTTP/1.1" 200 -
+[2024-02-19 12:28:04,567] INFO in _internal: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2024-02-19 12:28:04,567] INFO in _internal: [33mPress CTRL+C to quit[0m
+[2024-02-19 12:28:04,567] INFO in _internal:  * Restarting with stat
+[2024-02-19 12:28:04,666] WARNING in _internal:  * Debugger is active!
+[2024-02-19 12:28:04,673] INFO in _internal:  * Debugger PIN: 137-745-604
+[2024-02-19 12:28:16,260] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /escort HTTP/1.1" 200 -
+[2024-02-19 12:28:16,299] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/css/escort.css HTTP/1.1" 200 -
+[2024-02-19 12:28:16,300] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/area.png HTTP/1.1" 200 -
+[2024-02-19 12:28:16,300] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/logo.png HTTP/1.1" 200 -
+[2024-02-19 12:28:16,304] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/js/escort.js HTTP/1.1" 200 -
+[2024-02-19 12:28:16,386] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/1.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,387] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/4.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,387] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/19.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,388] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/2.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,388] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/3.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,388] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/20.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,393] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/21.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,395] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/22.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,397] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "GET /static/img/23.jpg HTTP/1.1" 200 -
+[2024-02-19 12:28:16,539] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2024-02-19 12:28:16,540] INFO in _internal: 127.0.0.1 - - [19/Feb/2024 12:28:16] "[35m[1mGET /static/audio/welcome.wav HTTP/1.1[0m" 206 -

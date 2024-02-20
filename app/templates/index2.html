@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-    <!-- <meta http-equiv="refresh" content="10; url=/escort"> -->
+    <!--<meta http-equiv="refresh" content="10; url=/escort"> -->
     <title>금남지하도상가 : 상가정보</title>
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link rel="stylesheet" href="static/css/templatemo-style.css" />
@@ -14,9 +14,8 @@
     <link rel="stylesheet" href="static/css/index.css" />
   </head>
   
-
-<body>
-
+  
+  <body>
     <nav>
       <div class="left">
         <div class="logo">
@@ -210,42 +209,31 @@
       }
       getToday();
     </script>
+
     <script>
-      // 음성 재생을 위한 변수
-      let welcomeVoice;
-
-      // 페이지 로드 시 실행할 함수
-      window.addEventListener('DOMContentLoaded', function () {
-          playWelcomeVoice();
-      });
-
-      // 페이지 언로드 시 실행할 함수
-      window.addEventListener('beforeunload', function () {
-          stopWelcomeVoice();
-      });
-
-      // 사용자 활동에 의해 호출되는 함수
-      function playWelcomeVoice() {
-          if (typeof SpeechSynthesisUtterance === "undefined" || typeof window.speechSynthesis === "undefined") {
-              alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
-              return;
-          }
-
-          welcomeVoice = new SpeechSynthesisUtterance();
-          welcomeVoice.lang = "ko-KR";
-          welcomeVoice.pitch = 1;
-          welcomeVoice.rate = 1;
-          welcomeVoice.volume = 1;
-          welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
-          window.speechSynthesis.speak(welcomeVoice);
-      }
-
-      // 페이지를 이동할 때 음성 재생을 멈추는 함수
-      function stopWelcomeVoice() {
-          if (window.speechSynthesis.speaking) {
-              window.speechSynthesis.cancel();
-          }
-      }
+      window.onload = function() {
+        // 페이지 로드 시에 실행될 코드
+        playWelcomeVoice();
+        };
+        
+        // 페이지 로드 시 실행할 함수
+        function playWelcomeVoice() {
+            if (typeof Audio === "undefined") {
+                alert("이 브라우저는 오디오를 지원하지 않습니다.");
+                return;
+            }
+        
+            var welcomeAudio = new Audio("/static/audio/welcome.wav");
+            welcomeAudio.play();
+        }
+        
+        // 페이지를 이동할 때 음성 재생을 멈추는 함수
+        function stopWelcomeVoice() {
+            if (typeof welcomeVoice !== "undefined" && window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+            }
+        }
     </script>
+
   </body>
 </html>

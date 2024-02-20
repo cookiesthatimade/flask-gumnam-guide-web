@@ -51,6 +51,46 @@ var buttonTexts = [
   "무인로봇 실증센터",
 ];
 
+// MP3 파일에 대한 경로 배열
+var audioPaths = [
+  "/static/audio/1.wav",
+  "/static/audio/2.wav",
+  "/static/audio/3.wav",
+  "/static/audio/4.wav",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "none",
+  "/static/audio/19.wav",
+  "/static/audio/20.wav",
+  "/static/audio/21.wav",
+  "/static/audio/22.wav",
+  "/static/audio/23.wav",
+  // 나머지 MP3 파일 경로를 추가합니다.
+];
+
+// MP3 파일을 재생하는 함수
+function playAudio(id) {
+  // id에 해당하는 인덱스를 찾습니다.
+  var index = parseInt(id.replace("button", "")) - 1;
+  if (index >= 0 && index < audioPaths.length) {
+    var audio = new Audio(audioPaths[index]); // 해당 인덱스에 해당하는 MP3 파일 경로로 Audio 객체를 생성합니다.
+    audio.play(); // MP3 파일을 재생합니다.
+  } else {
+    console.error("Invalid audio index");
+  }
+}
+
 // 이미지 버튼을 생성하는 함수
 function createImageButton(id, value) {
   var imgButton = document.createElement("div");
@@ -60,6 +100,7 @@ function createImageButton(id, value) {
   imgButton.style.backgroundSize = "cover";
   imgButton.onclick = function () {
     openModal(value);
+    playAudio(id); // 이미지 버튼 클릭 시 MP3 파일 재생
   };
 
   var textOverlay = document.createElement("div");
@@ -130,18 +171,6 @@ function closeModal() {
   var modalWrapper = document.querySelector(".modal-wrapper");
   modalWrapper.classList.remove("open");
 }
-
-const exitVoiceTexts = {
-  button1: "일번 출구 금남공원으로 안내합니다.",
-  button2: "이번 출구 에스씨 제일 은행으로 안내합니다.",
-  button3: "삼번 출구 우리 은행으로 안내합니다.",
-  button4: "사번 출구 흥국화재로 안내합니다.",
-  button19: "십구번 출구 전일빌딩으로 안내합니다.",
-  button20: "이십번 출구 엔에이치 투자증권으로 안내합니다.",
-  button21: "이십일번 출구 오일팔 민주화운동 기록관으로 안내합니다.",
-  button22: "이십이번 출구 네이버 파트너 스퀘어로 안내합니다.",
-  button23: "엠동 삼호 무인로봇 실증센터로 안내합니다.",
-};
 
 // 각 버튼에 대한 이벤트 리스너 추가
 for (let i = 1; i <= 23; i++) {
@@ -272,7 +301,6 @@ document.addEventListener("DOMContentLoaded", function () {
           clickButton("button4");
           isVoicePlayed = true;
         } else if (
-          transcript.includes("19") ||
           transcript.includes("19번") ||
           transcript.includes("19 번") ||
           transcript.includes("전일") ||
@@ -281,12 +309,11 @@ document.addEventListener("DOMContentLoaded", function () {
           clickButton("button19");
           isVoicePlayed = true;
         } else if (
-          transcript.includes("20") ||
           transcript.includes("20번") ||
+          transcript.includes("20") ||
           transcript.includes("20 번") ||
           transcript.includes("NH") ||
           transcript.includes("nh") ||
-          transcript.includes("엔에이치") ||
           transcript.includes("투자") ||
           transcript.includes("증권")
         ) {
@@ -332,6 +359,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
   // 음성 인식 결과가 없는 상태로 인식이 종료되면 음성 안내 메시지 재생 상태를 초기화
   recognition.addEventListener("end", function () {
     if (!isVoicePlayed) {
@@ -372,41 +400,25 @@ document.querySelectorAll(".image-button").forEach(function (button) {
   });
 });
 
-// 음성 재생을 위한 변수
-let welcomeVoice;
+window.onload = function () {
+  // 페이지 로드 시에 실행될 코드
+  playWelcomeVoice();
+};
 
 // 페이지 로드 시 실행할 함수
-window.addEventListener("DOMContentLoaded", function () {
-  playWelcomeVoice();
-});
-
-// 페이지 언로드 시 실행할 함수
-window.addEventListener("beforeunload", function () {
-  stopWelcomeVoice();
-});
-
-// 사용자 활동에 의해 호출되는 함수
 function playWelcomeVoice() {
-  if (
-    typeof SpeechSynthesisUtterance === "undefined" ||
-    typeof window.speechSynthesis === "undefined"
-  ) {
-    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+  if (typeof Audio === "undefined") {
+    alert("이 브라우저는 오디오를 지원하지 않습니다.");
     return;
   }
 
-  welcomeVoice = new SpeechSynthesisUtterance();
-  welcomeVoice.lang = "ko-KR";
-  welcomeVoice.pitch = 1;
-  welcomeVoice.rate = 1;
-  welcomeVoice.volume = 1;
-  welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
-  window.speechSynthesis.speak(welcomeVoice);
+  var welcomeAudio = new Audio("/static/audio/welcome.wav");
+  welcomeAudio.play();
 }
 
 // 페이지를 이동할 때 음성 재생을 멈추는 함수
 function stopWelcomeVoice() {
-  if (window.speechSynthesis.speaking) {
+  if (typeof welcomeVoice !== "undefined" && window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
   }
 }

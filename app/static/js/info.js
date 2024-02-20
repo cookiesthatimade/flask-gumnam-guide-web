@@ -211,41 +211,34 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// 음성 재생을 위한 변수
-let welcomeVoice;
+window.onload = function () {
+  // 페이지 로드 시에 실행될 코드
+  playWelcomeVoice();
+};
 
 // 페이지 로드 시 실행할 함수
-window.addEventListener("DOMContentLoaded", function () {
-  playWelcomeVoice();
-});
-
-// 페이지 언로드 시 실행할 함수
-window.addEventListener("beforeunload", function () {
-  stopWelcomeVoice();
-});
-
-// 사용자 활동에 의해 호출되는 함수
 function playWelcomeVoice() {
-  if (
-    typeof SpeechSynthesisUtterance === "undefined" ||
-    typeof window.speechSynthesis === "undefined"
-  ) {
-    alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
+  if (typeof Audio === "undefined") {
+    alert("이 브라우저는 오디오를 지원하지 않습니다.");
     return;
   }
 
-  welcomeVoice = new SpeechSynthesisUtterance();
-  welcomeVoice.lang = "ko-KR";
-  welcomeVoice.pitch = 1;
-  welcomeVoice.rate = 1;
-  welcomeVoice.volume = 1;
-  welcomeVoice.text = "안녕하세요 써니봇입니다. 무엇을 도와드릴까요?";
-  window.speechSynthesis.speak(welcomeVoice);
+  var welcomeAudio = new Audio("/static/audio/welcome.wav");
+  welcomeAudio.play();
 }
 
 // 페이지를 이동할 때 음성 재생을 멈추는 함수
 function stopWelcomeVoice() {
-  if (window.speechSynthesis.speaking) {
+  if (typeof welcomeVoice !== "undefined" && window.speechSynthesis.speaking) {
     window.speechSynthesis.cancel();
   }
 }
+
+// 각 이미지의 lazy loading을 위해 Intersection Observer를 등록
+function observeImages() {
+  const images = document.querySelectorAll(".item img");
+  images.forEach((img) => observer.observe(img));
+}
+
+// 초기 로딩 시 이미지 감시
+observeImages();
