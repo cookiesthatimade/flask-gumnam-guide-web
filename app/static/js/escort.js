@@ -172,35 +172,6 @@ function closeModal() {
   modalWrapper.classList.remove("open");
 }
 
-// 각 버튼에 대한 이벤트 리스너 추가
-for (let i = 1; i <= 23; i++) {
-  const buttonId = "button" + i;
-  const button = document.querySelector("#" + buttonId + ".image-button");
-
-  if (button) {
-    button.addEventListener("click", () => {
-      if (
-        typeof SpeechSynthesisUtterance === "undefined" ||
-        typeof window.speechSynthesis === "undefined"
-      ) {
-        alert("이 브라우저는 음성 합성을 지원하지 않습니다.");
-        return;
-      }
-
-      const message = new SpeechSynthesisUtterance();
-      message.lang = "kr";
-      message.pitch = 1;
-      message.rate = 1;
-      message.volume = 1;
-
-      if (exitVoiceTexts.hasOwnProperty(buttonId)) {
-        message.text = exitVoiceTexts[buttonId];
-        window.speechSynthesis.speak(message);
-      }
-    });
-  }
-}
-
 /*----------------------------------------------------*/
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -221,13 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 초기에 waveContainer를 숨김
   hideWaveContainer();
 
-  // 음성 인식 관련 변수 및 설정
-  let SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.interimResults = true;
-  recognition.lang = "ko-KR";
-  recognition.continuous = true;
+  const recognition = new webkitSpeechRecognition(); // 음성 인식 객체 생성
+  recognition.continuous = true; // 연속적인 음성 입력을 허용
+  recognition.lang = "ko-KR"; // 인식할 언어 설정 (한국어)
   let recognitionActive = false; // 음성 인식 활성화 여부를 추적하기 위한 변수
   let isVoicePlayed = false; // 음성 안내 메시지 재생 여부를 추적하기 위한 변수
 
@@ -236,10 +203,10 @@ document.addEventListener("DOMContentLoaded", function () {
     micIcon.classList.toggle("m-active");
     micButtonLoader.classList.toggle("active"); // mic-button-loader에 active 클래스를 토글합니다.
 
-    if (!micIcon.classList.contains("m-active")) {
-      hideWaveContainer();
+    if (micIcon.classList.contains("m-active")) {
+      showWaveContainer(); // 음성 인식이 활성화되면 waveContainer를 보이도록 설정
     } else {
-      showWaveContainer();
+      hideWaveContainer(); // 음성 인식이 비활성화되면 waveContainer를 숨기도록 설정
     }
 
     // 음성 인식 활성화 상태에 따라 시작 또는 종료
@@ -252,121 +219,138 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // 음성 인식 결과 처리
-  recognition.addEventListener("result", (e) => {
-    for (let i = e.resultIndex, len = e.results.length; i < len; i++) {
-      let transcript = e.results[i][0].transcript;
+  recognition.onresult = function (event) {
+    const result = event.results[event.results.length - 1]; // 가장 최근의 결과 가져오기
+    const transcript = result[0].transcript; // 인식된 텍스트 가져오기
 
-      if (!isVoicePlayed) {
-        // 음성으로 인식된 문장에 따라 해당하는 버튼 클릭
-        if (
-          transcript.includes("일번") ||
-          transcript.includes("일 번") ||
-          transcript.includes("1번") ||
-          transcript.includes("1 번") ||
-          transcript.includes("금남") ||
-          transcript.includes("공원")
-        ) {
-          clickButton("button1");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("이번") ||
-          transcript.includes("이 번") ||
-          transcript.includes("2번") ||
-          transcript.includes("2 번") ||
-          transcript.includes("SC") ||
-          transcript.includes("sc") ||
-          transcript.includes("제일은행")
-        ) {
-          clickButton("button2");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("삼번") ||
-          transcript.includes("삼 번") ||
-          transcript.includes("3번") ||
-          transcript.includes("3 번") ||
-          transcript.includes("우리") ||
-          transcript.includes("은행")
-        ) {
-          clickButton("button3");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("사번") ||
-          transcript.includes("사 번") ||
-          transcript.includes("4번") ||
-          transcript.includes("4 번") ||
-          transcript.includes("흥국") ||
-          transcript.includes("화재")
-        ) {
-          clickButton("button4");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("19번") ||
-          transcript.includes("19 번") ||
-          transcript.includes("전일") ||
-          transcript.includes("빌딩")
-        ) {
-          clickButton("button19");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("20번") ||
-          transcript.includes("20") ||
-          transcript.includes("20 번") ||
-          transcript.includes("NH") ||
-          transcript.includes("nh") ||
-          transcript.includes("투자") ||
-          transcript.includes("증권")
-        ) {
-          clickButton("button20");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("21번") ||
-          transcript.includes("21") ||
-          transcript.includes("21 번") ||
-          transcript.includes("518") ||
-          transcript.includes("5.18") ||
-          transcript.includes("민주화") ||
-          transcript.includes("운동")
-        ) {
-          clickButton("button21");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("22번") ||
-          transcript.includes("22") ||
-          transcript.includes("22 번") ||
-          transcript.includes("네이버") ||
-          transcript.includes("스마트스퀘어")
-        ) {
-          clickButton("button22");
-          isVoicePlayed = true;
-        } else if (
-          transcript.includes("무인") ||
-          transcript.includes("로봇") ||
-          transcript.includes("실증") ||
-          transcript.includes("센터")
-        ) {
-          clickButton("button23");
-          isVoicePlayed = true;
-        }
-        {
-          hideWaveContainer(); // waveContainer 숨기기
-          recognition.stop(); // 버튼 클릭 후 음성 인식 종료
-          micIcon.classList.remove("m-active");
-          micButtonLoader.classList.remove("active");
-          recognitionActive = false;
-          break;
-        }
-      }
+    // 특정 단어가 인식되면 해당 버튼을 클릭하고 음성 인식 종료
+    if (transcript.includes("1번") || transcript.includes("금남공원")) {
+      setTimeout(function () {
+        document.getElementById("button1").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (
+      transcript.includes("2번") ||
+      transcript.includes("sc") ||
+      transcript.includes("제일은행")
+    ) {
+      setTimeout(function () {
+        document.getElementById("button2").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (transcript.includes("3번") || transcript.includes("우리은행")) {
+      setTimeout(function () {
+        document.getElementById("button3").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (transcript.includes("4번") || transcript.includes("흥국화재")) {
+      setTimeout(function () {
+        document.getElementById("button4").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (transcript.includes("19번") || transcript.includes("전일빌딩")) {
+      setTimeout(function () {
+        document.getElementById("button19").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (
+      transcript.includes("20번") ||
+      transcript.includes("nh") ||
+      transcript.includes("투자증권")
+    ) {
+      setTimeout(function () {
+        document.getElementById("button20").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (
+      transcript.includes("21번") ||
+      transcript.includes("5.18") ||
+      transcript.includes("민주화운동")
+    ) {
+      setTimeout(function () {
+        document.getElementById("button21").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (
+      transcript.includes("22번") ||
+      transcript.includes("네이버") ||
+      transcript.includes("스마트")
+    ) {
+      setTimeout(function () {
+        document.getElementById("button22").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
+    } else if (
+      transcript.includes("m동") ||
+      transcript.includes("3호") ||
+      transcript.includes("무인로봇") ||
+      transcript.includes("실증센터")
+    ) {
+      setTimeout(function () {
+        document.getElementById("button23").click();
+        isVoicePlayed = true;
+        recognition.stop();
+      }, 1000);
     }
-  });
 
-  // 음성 인식 결과가 없는 상태로 인식이 종료되면 음성 안내 메시지 재생 상태를 초기화
-  recognition.addEventListener("end", function () {
-    if (!isVoicePlayed) {
-      alert("단어 인식을 하지 못했습니다. 다시 시도해 주세요.");
-    }
-    isVoicePlayed = false;
-  });
+    transcribeAudio(result[0].transcript);
+
+    hideWaveContainer();
+    recognition.stop();
+    micIcon.classList.remove("m-active");
+    micButtonLoader.classList.remove("active");
+    recognitionActive = false;
+  };
+
+  recognition.onerror = function (event) {
+    console.error("음성 인식 오류:", event.error);
+  };
+
+  function utf8_to_b64(str) {
+    return window.btoa(unescape(encodeURIComponent(str)));
+  }
+
+  const apiKey = "AIzaSyDK2TYJ_7VM3iJ524lB9VczLjBe80WaNC0";
+
+  function transcribeAudio(audioContent) {
+    // UTF-8로 문자열을 Base64로 인코딩
+    const audioData = utf8_to_b64(audioContent);
+
+    const url =
+      "https://speech.googleapis.com/v1/speech:recognize?key=" + apiKey;
+    const requestData = {
+      config: {
+        encoding: "LINEAR16",
+        sampleRateHertz: 16000,
+        languageCode: "ko-KR",
+      },
+      audio: {
+        content: audioData, // Base64로 인코딩된 오디오 데이터 전달
+      },
+    };
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: JSON.stringify(requestData),
+      contentType: "application/json",
+      success: function (response) {
+        console.log("음성 인식 결과:", response);
+        // 여기에 인식된 텍스트를 처리하는 코드를 추가할 수 있습니다.
+      },
+      error: function (xhr, status, error) {
+        console.error("오류 발생:", error);
+      },
+    });
+  }
 });
 
 // 이미지 버튼 클릭 처리
@@ -381,7 +365,6 @@ function clickButton(buttonId) {
     micIcon.classList.remove("m-active");
     micButtonLoader.classList.remove("active");
     recognitionActive = false;
-    isVoicePlayed = false;
   }
 }
 

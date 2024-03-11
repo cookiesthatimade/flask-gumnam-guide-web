@@ -7,6 +7,8 @@ import pytz
 from logging.config import dictConfig
 import logging.handlers  # 필요한 모듈을 가져옵니다.
 import threading  # threading 모듈 추가
+import requests
+from flask_cors import CORS
 
 # 로깅 설정 구성
 dictConfig({
@@ -34,6 +36,8 @@ dictConfig({
 
 
 app = Flask(__name__)
+CORS(app, resources={r"/convert": {"origins": "http://localhost:5000"}})
+
 
 # DB 연결에 대한 락
 connection_lock = threading.Lock()
@@ -64,25 +68,14 @@ def escort():
     return render_template('escort.html')
 
 
+@app.route('/info')
+def info():
+    return render_template('info.html')
+
+
 @app.route('/news')
 def news():
     return render_template('news.html')
-
-
-@app.route('/info')
-def info():
-    try:
-        with connection_lock:
-            connection = get_connection()
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT * FROM `subway`.`subway` ORDER BY CASE `업종` WHEN '의류(옷/속옷)' THEN 1 WHEN '신발(잡화)' THEN 2 WHEN '보석' THEN 3 WHEN '화장품(미용)' THEN 4 WHEN '수선' THEN 5 WHEN '핸드폰' THEN 6 WHEN '기타' THEN 7 ELSE 8 END ASC,`위치` ASC LIMIT 300 OFFSET 0;")
-                data = cursor.fetchall()
-
-        return render_template('info.html', data=data)
-    except Exception as e:
-        app.logger.error("/info 라우트에서 오류 발생: %s", str(e))
-        return "오류가 발생했습니다", 500
 
 
 ############################################################################################
