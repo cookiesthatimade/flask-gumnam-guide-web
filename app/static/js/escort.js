@@ -318,7 +318,66 @@ document.addEventListener("DOMContentLoaded", function () {
     return window.btoa(unescape(encodeURIComponent(str)));
   }
 
-  const apiKey = "AIzaSyDK2TYJ_7VM3iJ524lB9VczLjBe80WaNC0";
+  //API_KEY값 난독화 코드
+  function _0x4d78() {
+    const _0x5200d7 = [
+      "1446852ugkSWc",
+      "128835gkFPAV",
+      "AIzaSyDdhp_dq84sgH9ZdZzbDDYBwpakPrx_jUc",
+      "11EzxkRg",
+      "4119216lsuoBU",
+      "323880lqWUVr",
+      "63652aujnvg",
+      "105ojHIQQ",
+      "20gKFXEX",
+      "91NAYfmP",
+      "12RWTgQu",
+      "1997090jCILTD",
+      "388336WrfrbO",
+    ];
+    _0x4d78 = function () {
+      return _0x5200d7;
+    };
+    return _0x4d78();
+  }
+  const _0x1b188c = _0x497d;
+  function _0x497d(_0x1bfc8f, _0x334a50) {
+    const _0x4d783b = _0x4d78();
+    return (
+      (_0x497d = function (_0x497dc6, _0x14c96c) {
+        _0x497dc6 = _0x497dc6 - 0x13d;
+        let _0x8ad6bc = _0x4d783b[_0x497dc6];
+        return _0x8ad6bc;
+      }),
+      _0x497d(_0x1bfc8f, _0x334a50)
+    );
+  }
+  (function (_0x3dd67e, _0x4a5485) {
+    const _0x36e16a = _0x497d,
+      _0x4c7c5b = _0x3dd67e();
+    while (!![]) {
+      try {
+        const _0x1cddf3 =
+          parseInt(_0x36e16a(0x140)) / 0x1 +
+          parseInt(_0x36e16a(0x141)) / 0x2 +
+          (parseInt(_0x36e16a(0x148)) / 0x3) *
+            (-parseInt(_0x36e16a(0x147)) / 0x4) +
+          (-parseInt(_0x36e16a(0x13f)) / 0x5) *
+            (-parseInt(_0x36e16a(0x13e)) / 0x6) +
+          (parseInt(_0x36e16a(0x13d)) / 0x7) *
+            (-parseInt(_0x36e16a(0x146)) / 0x8) +
+          (parseInt(_0x36e16a(0x142)) / 0x9) *
+            (-parseInt(_0x36e16a(0x149)) / 0xa) +
+          (-parseInt(_0x36e16a(0x144)) / 0xb) *
+            (parseInt(_0x36e16a(0x145)) / 0xc);
+        if (_0x1cddf3 === _0x4a5485) break;
+        else _0x4c7c5b["push"](_0x4c7c5b["shift"]());
+      } catch (_0x30e0fa) {
+        _0x4c7c5b["push"](_0x4c7c5b["shift"]());
+      }
+    }
+  })(_0x4d78, 0x6f310);
+  const apiKey = _0x1b188c(0x143);
 
   function transcribeAudio(audioContent) {
     // UTF-8로 문자열을 Base64로 인코딩
