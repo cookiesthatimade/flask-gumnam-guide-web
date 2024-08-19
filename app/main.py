@@ -5,10 +5,14 @@ import json
 from pytz import timezone
 import pytz
 from logging.config import dictConfig
-import logging.handlers  # 필요한 모듈을 가져옵니다.
-import threading  # threading 모듈 추가
+import logging.handlers
+import threading
 import requests
 from flask_cors import CORS
+import base64
+
+# my_settings.py 파일에서 설정 불러오기
+from my_settings import DB_SETTINGS, SENSOR_DB1_SETTINGS, SENSOR_DB2_SETTINGS, API_KEY
 
 # 로깅 설정 구성
 dictConfig({
@@ -45,10 +49,10 @@ connection_lock = threading.Lock()
 
 # DB 연결 설정
 def get_connection():
-    connection = pymysql.connect(host='43.203.1.73',
-                                 user='root',
-                                 password='#leeseun80',
-                                 db='subway',
+    connection = pymysql.connect(host=DB_SETTINGS['host'],
+                                 user=DB_SETTINGS['user'],
+                                 password=DB_SETTINGS['password'],
+                                 db=DB_SETTINGS['db'],
                                  cursorclass=pymysql.cursors.DictCursor)
     return connection
 
@@ -87,10 +91,10 @@ def sensing_data():
     def respond_to_client():
 
         while True:
-            connection1 = pymysql.connect(host='3.34.168.81',
-                                          user='stella',
-                                          password='1111',
-                                          db='sensor',
+            connection1 = pymysql.connect(host=SENSOR_DB1_SETTINGS['host'],
+                                          user=SENSOR_DB1_SETTINGS['user'],
+                                          password=SENSOR_DB1_SETTINGS['password'],
+                                          db=SENSOR_DB1_SETTINGS['db'],
                                           cursorclass=pymysql.cursors.DictCursor)
 
             with connection1.cursor() as cursor:
@@ -117,10 +121,10 @@ def sensing_data2():
     def respond_to_client():
 
         while True:
-            connection2 = pymysql.connect(host='3.34.168.81',
-                                          user='stella',
-                                          password='1111',
-                                          db='sensor2',
+            connection2 = pymysql.connect(host=SENSOR_DB2_SETTINGS['host'],
+                                          user=SENSOR_DB2_SETTINGS['user'],
+                                          password=SENSOR_DB2_SETTINGS['password'],
+                                          db=SENSOR_DB2_SETTINGS['db'],
                                           cursorclass=pymysql.cursors.DictCursor)
 
             with connection2.cursor() as cursor:
@@ -140,6 +144,30 @@ def sensing_data2():
                 time.sleep(5)  # 5초로 설정
 
     return Response(respond_to_client(), mimetype='text/event-stream')
+
+
+@app.route('/transcribe', methods=['POST'])
+def transcribe():
+    data = request.json
+    audio_content = data.get('audioContent')
+
+    request_data = {
+        "config": {
+            "encoding": "LINEAR16",
+            "sampleRateHertz": 16000,
+            "languageCode": "ko-KR"
+        },
+        "audio": {
+            "content": audio_content
+        }
+    }
+
+    # Google Speech-to-Text API에 요청
+    url = f'https://speech.googleapis.com/v1/speech:recognize?key={API_KEY}'
+    response = requests.post(url, json=request_data)
+
+    # 응답 반환
+    return jsonify(response.json())
 
 
 if __name__ == '__main__':
