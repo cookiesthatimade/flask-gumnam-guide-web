@@ -7,7 +7,7 @@
 
 
 ➡️ **광주 MBC 촬영 영상** (이미지를 클릭하면 YouTube로 이동)
-[![Image](https://github.com/user-attachments/assets/e9924821-8749-4864-b254-969d3ff5f64c)](https://youtu.be/'LndJn0Z4PwM')
+[![Image](https://github.com/user-attachments/assets/e9924821-8749-4864-b254-969d3ff5f64c)](https://youtu.be/LndJn0Z4PwM)
 
 
 ---
