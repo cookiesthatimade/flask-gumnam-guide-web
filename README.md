@@ -1,4 +1,4 @@
-# 💁🏻‍♀️ flask-gumnam-guide-web(gumnam-underground-shopping-center) 💁🏻‍♀️
+# 💁🏻‍♀️ flask-gumnam-guide-web 💁🏻‍♀️
 
 
 
